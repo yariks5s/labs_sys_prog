@@ -1,15 +1,19 @@
+#include <functional>
 #include <iostream>
+#include <memory>
 #include <string>
+#include <type_traits>
 #include <unordered_map>
 #include <vector>
 #include <algorithm>
 #include <fstream>
 #include <sstream>
+#include <regex>
 
 /// Here we define colours that will be used for painting words
 #define BLACK "\033[30m" 
-#define RED "\033[31m" //
-#define GREEN "\033[32m" // comments
+#define RED "\033[31m" // numbers
+#define GREEN "\033[32m" // comments, strings
 #define YELLOW "\033[33m" // operators
 #define BLUE "\033[34m" // reserved words
 #define MAGENTA "\033[35m" // names
@@ -17,6 +21,24 @@
 #define RESET "\033[0m" // white colour, for punctuation
 
 using namespace std;
+
+std::regex directivesRegex("#include|#define|#undef|#if|#ifdef|#ifndef|#else|#elif|#endif|#line|#error|#pragma");
+
+std::regex reservedWordRegex("\\b(auto|else|long|switch|"
+                                "break|enum|register|typedef|"
+                                "case|extern|return|union|"
+                                "char|float|short|unsigned|"
+                                "const|for|signed|void|"
+                                "continue|goto|sizeof|volatile|"
+                                "default|if|static|while|"
+                                "do|int|struct|_Packed|"
+                                "double|printf|scanf)\\b", std::regex_constants::icase);
+
+std::regex numbersRegex("\\b^[0-9]+$\\b", std::regex_constants::icase);
+
+std::regex pSignsRegex(R"(\b(?:;|:|,|\(|\)|\{|\}|\[|\])\b)");
+
+std::regex opRegex("[+\\-*/%=&|]{1,2}|==|!=|&&|\\|\\|");
 
 class FiniteAutomation
 {
@@ -78,28 +100,31 @@ vector<string> preprocessor_directives = {
 
 vector<string> comments = {"//"};
 
-vector<string> operators = {"+", "-", "/", "*", "&&", "||", "%", "=", "==", "!="};
+// vector<string> operators = {"+", "-", "/", "*", "&&", "||", "%", "=", "==", "!=", "&"};
 
-vector<string> p_signs = {";", ":", ",", "(", ")", "{", "}", "[", "]"};
+// vector<string> p_signs = {";", ":", ",", "(", ")", "{", "}", "[", "]"};
 
 vector<string> delimiters = {"//", "+", "-", "/", "*", "&&", "||", "%", "=", "==", "!=", ";", ":", ",", "(", ")", "{", "}", "[", "]", "endpos"};
-vector<char> delimiters_char = {'(', ')'};
+
+vector<char> delimiters_char = {'(', ')', ';', '-', '+', '=', '{', '}', '*', '/', '&', '%', ','};
+
+vector<char> quotes = {'"', '\''};
 
 
-vector<string> reserved_words = {
-                                "auto", "else", "long", "switch",
-                                "break", "enum", "register", "typedef",
-                                "case",	"extern", "return",	"union",
-                                "char",	"float", "short", "unsigned",
-                                "const", "for", "signed", "void",
-                                "continue",	"goto",	"sizeof", "volatile",
-                                "default", "if", "static", "while",
-                                "do", "int", "struct", "_Packed",
-                                "double", "printf", "scanf"
-                                };
+// vector<string> reserved_words = {
+//                                 "auto", "else", "long", "switch",
+//                                 "break", "enum", "register", "typedef",
+//                                 "case",	"extern", "return",	"union",
+//                                 "char",	"float", "short", "unsigned",
+//                                 "const", "for", "signed", "void",
+//                                 "continue",	"goto",	"sizeof", "volatile",
+//                                 "default", "if", "static", "while",
+//                                 "do", "int", "struct", "_Packed",
+//                                 "double", "printf", "scanf"
+//                                 };
 
 vector<string> states = {
-    "number", "constant", "preprocessor directives", "comments",
+    "numbers", "constant", "preprocessor directives", "comments",
     "reserved_words", "operators", "punctuations signs",
     "identifiers"
 };
@@ -112,21 +137,26 @@ bool is_inside(const vector<string> list, const string word)
 
 void print_with_colour(string &previous_state, string word, string space)
 {
-    if (is_inside(reserved_words, word))
+    if (std::regex_search(word, reservedWordRegex))
         std::cout << BLUE << word << space;
     else if (previous_state == "RESET")
     {
-        if (is_inside(preprocessor_directives, word))
+        if (std::regex_search(word, directivesRegex))
         {
             std::cout << CYAN << word << space;
             previous_state = "preprocessor_directives";
         }
-        else if (is_inside(reserved_words, word))
+        else if (std::regex_search(word, reservedWordRegex))
         {
             std::cout << BLUE << word << space;
             previous_state = "reserved_words";
         }
-        else if (is_inside(operators, word))
+        else if (std::regex_search(word, numbersRegex))
+        {
+            std::cout << RED << word << space;
+            previous_state = "numbers";
+        }
+        else if (regex_search(word, opRegex))
         {
             std::cout << YELLOW << word << space;
             previous_state = "operators";
@@ -136,10 +166,10 @@ void print_with_colour(string &previous_state, string word, string space)
             std::cout << GREEN << word << space;
             previous_state = "comments";
         }
-        else if (is_inside(p_signs, word))
+        else if (std::regex_search(word, pSignsRegex))
         {
             std::cout << RESET << word << space;
-            previous_state = "p_signs";
+            previous_state = "RESET";
         }
         else
         {
@@ -149,15 +179,20 @@ void print_with_colour(string &previous_state, string word, string space)
     }
     else if (previous_state == "comments")
         std::cout << GREEN << word << space;
-    else if (is_inside(p_signs, word))
+    else if (std::regex_search(word, pSignsRegex))
     {
         std::cout << RESET << word << space;
-        previous_state = "p_signs";
+        previous_state = "RESET";
     }
-    else if (is_inside(operators, word))
+    else if (regex_search(word, opRegex))
     {
         std::cout << YELLOW << word << space;
         previous_state = "operators";
+    }
+    else if (std::regex_search(word, numbersRegex))
+    {
+        std::cout << RED << word << space;
+        previous_state = "numbers";
     }
     else
     {
@@ -166,45 +201,70 @@ void print_with_colour(string &previous_state, string word, string space)
     }
 }
 
-void check_delimiter(string &previous_state, string word)
+void check_delimiter(string &previous_state, string word, bool &isBeginOfStr)
 {
     int pos = -1;
     bool is_done = false;
-    for (char c : word)
+    if (isBeginOfStr)
     {
-        pos++;
-        if (std::find(delimiters_char.begin(),delimiters_char.end(), c) != delimiters_char.end())
+        for (char c : word)
         {
-            print_with_colour(previous_state, word.substr(0, pos), "");
-            std::cout << RESET << word[pos];
-            if (pos < word.length()-1)
-                check_delimiter(previous_state, word.substr(pos+1, word.length()));
-            is_done = true;
-            break;
+            pos++;
+            if (std::find(quotes.begin(), quotes.end(), c) != quotes.end() && isBeginOfStr)
+            {
+                isBeginOfStr = false;
+                std::cout << GREEN << word[pos];
+                check_delimiter(previous_state, word.substr(pos+1, word.length()), isBeginOfStr);
+                break;
+            }
+            std::cout << GREEN << word[pos];
         }
     }
-    if (!is_done)
+    else
     {
-        print_with_colour(previous_state, word, " ");
+        for (char c : word)
+        {
+            pos++;
+            if (std::find(delimiters_char.begin(), delimiters_char.end(), c) != delimiters_char.end() && !isBeginOfStr)
+            {
+                print_with_colour(previous_state, word.substr(0, pos), "");
+                std::cout << RESET << word[pos];
+                if (pos < word.length()-1)
+                    check_delimiter(previous_state, word.substr(pos+1, word.length()), isBeginOfStr);
+                is_done = true;
+                break;
+            }
+            else if (std::find(quotes.begin(), quotes.end(), c) != quotes.end() && isBeginOfStr)
+            {
+                isBeginOfStr = false;
+                check_delimiter(previous_state, word.substr(pos+1, word.length()), isBeginOfStr);
+            } 
+            else if (std::find(quotes.begin(), quotes.end(), c) != quotes.end() || isBeginOfStr)
+            {
+                is_done = true;
+                isBeginOfStr = true;
+                std::cout << GREEN << word[pos];
+                check_delimiter(previous_state, word.substr(pos+1, word.length()), isBeginOfStr);
+                break;
+            }
+        }
+        if (!is_done)
+        {
+            print_with_colour(previous_state, word, "");
+        }
     }
-    // for (string symb : delimiters)
-    // {
-    //     std::istringstream iss(word);
+}
 
-    //     // Vector to store individual elements
-    //     std::vector<std::string> elements;
+int countOccurrences(const std::string& str, char target) {
+    int count = 0;
 
-    //     // Tokenize the string and store elements in the vector
-    //     std::string token;
-    //     while (std::getline(iss, token, ' '))
-    //     {
-    //         elements.push_back(token);
-    //     }
-    //     {
-    //         print_with_colour(previous_state, word, " ");
-    //         break;
-    //     }
-    // }
+    for (char ch : str) {
+        if (ch == target) {
+            count++;
+        }
+    }
+
+    return count;
 }
 
 int main()
@@ -219,23 +279,85 @@ int main()
     }
 
     // Read the file content line by line
+    int foundCurlyBraces = 0;
+    int foundBraces = 0;
+    int foundSquareBraces = 0;
+    int foundQuotes = 0;
+    int foundSingleQuotes = 0;
+    bool isError = false;
     std::string line;
     while (std::getline(inputFile, line))
     {
-        // Tokenize the line into words
-        std::istringstream iss(line);
-        std::unordered_map<std::string, std::string> words;
-
-        std::string word;
-        std::string previous_state = "RESET";
-
-        while (iss >> word) {
-            check_delimiter(previous_state, word);
-        }
-        std::cout << std::endl;
-
+        if (line.find('{') || line == "{")
+            foundCurlyBraces += countOccurrences(line, '{');
+        if (line.find('}') || line == "}")
+            foundCurlyBraces -= countOccurrences(line, '}');
+        if (line.find('(') || line == "(")
+            foundBraces += countOccurrences(line, '(');
+        if (line.find(')') || line == ")")
+            foundBraces -= countOccurrences(line, ')');
+        if (line.find('[') || line == "[")
+            foundSquareBraces += countOccurrences(line, '[');
+        if (line.find(']') || line == "]")
+            foundSquareBraces -= countOccurrences(line, ']');
+        if (line.find('"') || line == "\"")
+            foundQuotes += countOccurrences(line, '"');
+        if (line.find('\'') || line == "'")
+            foundSingleQuotes += countOccurrences(line, '\'');
     }
+    if (!(foundBraces == 0 && foundCurlyBraces == 0 && foundSquareBraces == 0 && foundQuotes % 2 == 0 && foundSingleQuotes % 2 == 0))
+    {
+        std::ifstream inputFile("example.c");
+        while (std::getline(inputFile, line))
+        {
+            std::cout << RED;
+            std::cout << line << std::endl;
+            isError = true;
+        }
+    }
+    if (!isError)
+    {
+        std::ifstream inputFile("example.c");
+        while (std::getline(inputFile, line))
+        {
+            // Tokenize the line into words
+            std::istringstream iss(line);
+            bool isBeginOfStr = false;
+            std::unordered_map<std::string, std::string> words;
 
+            std::string word;
+            std::string previous_state = "RESET";
+            bool isDone = false;
+            for (size_t i = 0; i < line.length(); i++)
+            {
+                if (line[i] == ' ')
+                    std::cout << " ";
+                else if (line.substr(i, 2) == "//")
+                {
+                    std::cout << GREEN << line;
+                    isDone = true;
+                }
+                else
+                    break;
+            }
+            if (!isDone)
+            {
+                std::string temp_line = line;
+                while (iss >> word)
+                {
+                    size_t found = temp_line.find(word);
+                    if (found != std::string::npos && temp_line[found-1] == ' ')
+                    {
+                        std::cout << " ";
+                        temp_line = line.substr(found + word.length(), line.length() - found - word.length());
+                    }
+                    check_delimiter(previous_state, word, isBeginOfStr);
+                }
+            }
+            std::cout << std::endl;
+
+        }
+    }
     // Close the file
     inputFile.close();
 

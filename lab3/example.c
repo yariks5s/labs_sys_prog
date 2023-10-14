@@ -11,6 +11,7 @@ int factorial(int n) {
 
 const int main() {
     int num;
+    num-1;
 
     // Get user input
     printf("Enter a number: ");
@@ -20,4 +21,5 @@ const int main() {
     printf("Factorial of %d = %d\n", num, factorial(num));
 
     return 0;
+
 }
