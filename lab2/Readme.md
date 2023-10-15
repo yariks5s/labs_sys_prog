@@ -1,0 +1,1 @@
+This lab is implementing non-deterministic finite automatas. The right file is `non_deterministic_f_a.cpp`. There are some examples based on the file that was provided in Google Classroom.

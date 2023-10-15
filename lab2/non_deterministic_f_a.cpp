@@ -1,12 +1,25 @@
 #include <cstddef>
 #include <iostream>
+#include <string>
 #include <tuple>
 #include <unordered_map>
 #include <vector>
 #include <algorithm>
 #include <fstream>
+#include <sstream>
 
 using namespace std;
+
+vector<char> specificElement(const std::vector<std::tuple<char, char>>& endStates, char target)
+{
+    vector<char> result;
+    for (const auto& myTuple : endStates) {
+        if (std::get<0>(myTuple) == target) {
+            result.push_back(std::get<1>(myTuple));  // Found the specific element as the first element
+        }
+    }
+    return result;  // Specific element not found as the first element in any tuple
+}
 
 class FiniteAutomation
 {
@@ -23,33 +36,36 @@ public:
         start_state = start_state_;
         final_states = final_states_;
     }
-
-    char acceptsImpl(char firstState, const string word, size_t pos)
+    
+    void accepts_(char firstState, string word, vector<bool> &results)
     {
-        pos ++;
-        bool ok = false;
-        for(auto states : transitions[word[pos]])
+        char thisOp = word[0];
+        vector<char> endStates = specificElement(transitions[thisOp], firstState);
+        if (word.length() == 1)
         {
-            if (pos == word.length() - 1)
-            {
-                for (char elem : final_states)
-                {
-                    if (elem == get<1>(states))
-                        return true;
-                }
-            }
-            ok = acceptsImpl(get<1>(states), word, pos);
+            checkAcceptance(endStates, results);
+            return;
         }
-        if (ok)
-            return true;
-        return false;
+        word = word.substr(1, word.length() - 1);
+        if (!endStates.empty())
+        {
+            for (auto& state : endStates)
+                accepts_(state, word, results);
+        }
     }
 
-
-    bool accepts(const string& input)
+    void checkAcceptance(vector<char> endStates, vector<bool> &results)
     {
-        char state = start_state;
-        return acceptsImpl(state, input, 0);
+        for (auto state : endStates)
+        {
+            for (auto fin_states : final_states)
+            {
+                if (state == fin_states)
+                    results.push_back(true);
+                else
+                    results.push_back(0);
+            }
+        }
     }
 
 private:
@@ -60,8 +76,42 @@ private:
     vector<char> final_states;
 };
 
+char translateToChar(int number) {
+    // Assuming the input is between 1 and 26
+    if (number >= 1 && number <= 26) {
+        return static_cast<char>('a' + number - 1);
+    } else {
+        // Handle out-of-range case
+        return '?';
+    }
+}
+
+int charToInt(char digitChar) {
+    return digitChar - '0';
+}
+
+void checkResult(vector<bool> &results)
+{
+    if (results.empty())
+    {
+        std::cout << "This string is not accessible." << std::endl;
+        results.clear();
+        return;
+    }
+    for (bool res : results)
+        if (res)
+        {
+            std::cout << "This string is accessible." << std::endl;
+            results.clear();
+            return;
+        }
+    results.clear();
+    std::cout << "This string is not accessible." << std::endl;
+}
+
 int main()
 {
+    vector<bool> results;
     ifstream myfile("task.txt");
     if (!myfile.is_open())
     {
@@ -81,34 +131,50 @@ int main()
     vector<char> final_states;
     while (getline(myfile, line))
     {
+        if (i == 3)
+        {
+            std::istringstream iss(line);
+            char number;
+            iss >> number;
+            while (iss >> number)
+                final_states.push_back(number);
+        }
+        if (i >= 4)
+        {
+            std::istringstream iss(line);
+            char elem, state1, state2;
+            iss >> state1;
+            iss >> elem;
+            iss >> state2;
+            transitions[elem].push_back(make_tuple(state1, state2));
+        }
         for (auto elem : line)
         {
             if (elem != ' ')
             {
                 if (i == 0)
-                    alphabet.push_back(elem);
-                if (i == 1)
-                    states.push_back(elem);
-                if (i == 2)
                 {
-                    for (int j = 4; j < line.size(); j=j+4)
-                        transitions[line[0]].push_back(make_tuple(line[j-2], line[j]));
-                    break;
+                    for (int i = 1; i <= charToInt(elem); ++i)
+                        alphabet.push_back(translateToChar(i));
                 }
-                if (i == 3)
+                if (i == 1)
+                {
+                    for (int i = 1; i <= charToInt(elem); ++i)
+                        states.push_back(i);
+                }
+                if (i == 2)
                     start_state = elem;
-                if (i == 4)
-                    final_states.push_back(elem);
             }
         }
-        if (i != 2 || line.empty())
-            i++;
+        i++;
     }
 
     FiniteAutomation automaton(alphabet, states, transitions, start_state, final_states);
 
-    cout << automaton.accepts("ab") << endl; // true
-    cout << automaton.accepts("abb") << endl; // false
+    automaton.accepts_(start_state, "ab", results);
+    checkResult(results);
+    automaton.accepts_(start_state, "ecc", results);
+    checkResult(results);
 
     return 0;
 }
