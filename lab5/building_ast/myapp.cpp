@@ -1,0 +1,2636 @@
+/* A Bison parser, made by GNU Bison 3.8.2.  */
+
+/* Bison implementation for Yacc-like parsers in C
+
+   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2021 Free Software Foundation,
+   Inc.
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
+
+/* As a special exception, you may create a larger work that contains
+   part or all of the Bison parser skeleton and distribute that work
+   under terms of your choice, so long as that work isn't itself a
+   parser generator using the skeleton or a modified version thereof
+   as a parser skeleton.  Alternatively, if you modify or redistribute
+   the parser skeleton itself, you may (at your option) remove this
+   special exception, which will cause the skeleton and the resulting
+   Bison output files to be licensed under the GNU General Public
+   License without this special exception.
+
+   This special exception was added by the Free Software Foundation in
+   version 2.2 of Bison.  */
+
+/* C LALR(1) parser skeleton written by Richard Stallman, by
+   simplifying the original so-called "semantic" parser.  */
+
+/* DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
+   especially those whose name start with YY_ or yy_.  They are
+   private implementation details that can be changed or removed.  */
+
+/* All symbols defined below should begin with yy or YY, to avoid
+   infringing on user name space.  This should be done even for local
+   variables, as they might otherwise be expanded by user macros.
+   There are some unavoidable exceptions within include files to
+   define necessary library symbols; they are noted "INFRINGES ON
+   USER NAME SPACE" below.  */
+
+/* Identify Bison output, and Bison version.  */
+#define YYBISON 30802
+
+/* Bison version string.  */
+#define YYBISON_VERSION "3.8.2"
+
+/* Skeleton name.  */
+#define YYSKELETON_NAME "yacc.c"
+
+/* Pure parsers.  */
+#define YYPURE 0
+
+/* Push parsers.  */
+#define YYPUSH 0
+
+/* Pull parsers.  */
+#define YYPULL 1
+
+
+
+
+/* First part of user prologue.  */
+#line 1 "Bison_Rule.y"
+
+  #include <iostream>
+  #include <sstream>
+
+  void yyerror(const char* m);
+  extern int yylex();
+  extern FILE* yyin;
+  #include <stdio.h>
+  #include <string.h>
+  #include <map>
+  #include <fstream>
+  #include <string>
+  using namespace std;
+
+  int line = 1;
+  int stringNumber = 0;
+  int count1 = 0;
+  int temp;
+  int countForS =0;
+  int countFort =0;
+  int countFora =0;
+  int countForv =0;
+  int countForLoop = 1;
+  int countForIF = 1;
+  int countForEndIF = 1;
+
+
+  map<string, string> table;
+  map<string, string> env;
+  map<string, string> variables;
+  map<string, string> tVariables;
+  bool printByTokenName;
+  bool printTepsilon;
+  char typecheck[100];
+  string output = "\n";
+
+
+  typedef struct tnode {
+    char valname[100];
+	char valname2[100];
+	char valname3[100];
+    char token[100];
+	char token2[100];
+	char token3[100];
+	bool isshow;
+	bool lastchild;
+	struct tnode *child;
+    struct tnode *ptr;
+    }tnode;
+
+	tnode* CreateTnode();
+	tnode* ProgramNode(tnode* push, tnode* t);
+	tnode* ProgramNode(string valname, string token, tnode* t);
+	void yyerror(int m);
+	void yyerror(int m, string m1);
+	void printtree(tnode *s);
+	tnode *NTnode=NULL;
+
+
+#line 131 "myapp.cpp"
+
+# ifndef YY_CAST
+#  ifdef __cplusplus
+#   define YY_CAST(Type, Val) static_cast<Type> (Val)
+#   define YY_REINTERPRET_CAST(Type, Val) reinterpret_cast<Type> (Val)
+#  else
+#   define YY_CAST(Type, Val) ((Type) (Val))
+#   define YY_REINTERPRET_CAST(Type, Val) ((Type) (Val))
+#  endif
+# endif
+# ifndef YY_NULLPTR
+#  if defined __cplusplus
+#   if 201103L <= __cplusplus
+#    define YY_NULLPTR nullptr
+#   else
+#    define YY_NULLPTR 0
+#   endif
+#  else
+#   define YY_NULLPTR ((void*)0)
+#  endif
+# endif
+
+#include "myapp.hpp"
+/* Symbol kind.  */
+enum yysymbol_kind_t
+{
+  YYSYMBOL_YYEMPTY = -2,
+  YYSYMBOL_YYEOF = 0,                      /* "end of file"  */
+  YYSYMBOL_YYerror = 1,                    /* error  */
+  YYSYMBOL_YYUNDEF = 2,                    /* "invalid token"  */
+  YYSYMBOL_TOKEN_CHARCONST = 3,            /* TOKEN_CHARCONST  */
+  YYSYMBOL_TOKEN_INTCONST = 4,             /* TOKEN_INTCONST  */
+  YYSYMBOL_TOKEN_FLOATCONST = 5,           /* TOKEN_FLOATCONST  */
+  YYSYMBOL_TOKEN_STRINGCONST = 6,          /* TOKEN_STRINGCONST  */
+  YYSYMBOL_TOKEN_ID = 7,                   /* TOKEN_ID  */
+  YYSYMBOL_TOKEN_WHITESPACEspace = 8,      /* TOKEN_WHITESPACEspace  */
+  YYSYMBOL_TOKEN_WHITESPACEtab = 9,        /* TOKEN_WHITESPACEtab  */
+  YYSYMBOL_TOKEN_WHITESPACEnewLine = 10,   /* TOKEN_WHITESPACEnewLine  */
+  YYSYMBOL_TOKEN_ARITHMATICOP_MINUS = 11,  /* TOKEN_ARITHMATICOP_MINUS  */
+  YYSYMBOL_TOKEN_ARITHMATICOP_DIV = 12,    /* TOKEN_ARITHMATICOP_DIV  */
+  YYSYMBOL_TOKEN_ARITHMATICOP_POW = 13,    /* TOKEN_ARITHMATICOP_POW  */
+  YYSYMBOL_TOKEN_ARITHMATICOP_PLUS = 14,   /* TOKEN_ARITHMATICOP_PLUS  */
+  YYSYMBOL_TOKEN_ARITHMATICOP_MULT = 15,   /* TOKEN_ARITHMATICOP_MULT  */
+  YYSYMBOL_TOKEN_BITWISEOP = 16,           /* TOKEN_BITWISEOP  */
+  YYSYMBOL_TOKEN_LOGICOP = 17,             /* TOKEN_LOGICOP  */
+  YYSYMBOL_TOKEN_RELATIONOP = 18,          /* TOKEN_RELATIONOP  */
+  YYSYMBOL_TOKEN_ASSIGNOP = 19,            /* TOKEN_ASSIGNOP  */
+  YYSYMBOL_TOKEN_LOGICOP_NOT = 20,         /* TOKEN_LOGICOP_NOT  */
+  YYSYMBOL_TOKEN_LEFTPAREN = 21,           /* TOKEN_LEFTPAREN  */
+  YYSYMBOL_TOKEN_RIGHTPAREN = 22,          /* TOKEN_RIGHTPAREN  */
+  YYSYMBOL_TOKEN_LCB = 23,                 /* TOKEN_LCB  */
+  YYSYMBOL_TOKEN_RCB = 24,                 /* TOKEN_RCB  */
+  YYSYMBOL_TOKEN_SEMICOLON = 25,           /* TOKEN_SEMICOLON  */
+  YYSYMBOL_TOKEN_COMMA = 26,               /* TOKEN_COMMA  */
+  YYSYMBOL_TOKEN_UNTIL = 27,               /* TOKEN_UNTIL  */
+  YYSYMBOL_TOKEN_LB = 28,                  /* TOKEN_LB  */
+  YYSYMBOL_TOKEN_RB = 29,                  /* TOKEN_RB  */
+  YYSYMBOL_TOKEN_PRFUNC = 30,              /* TOKEN_PRFUNC  */
+  YYSYMBOL_TOKEN_ELSECONDITION = 31,       /* TOKEN_ELSECONDITION  */
+  YYSYMBOL_TOKEN_INTTYPE = 32,             /* TOKEN_INTTYPE  */
+  YYSYMBOL_TOKEN_VOIDTYPE = 33,            /* TOKEN_VOIDTYPE  */
+  YYSYMBOL_TOKEN_DOUBLETYPE = 34,          /* TOKEN_DOUBLETYPE  */
+  YYSYMBOL_TOKEN_FLOATTYPE = 35,           /* TOKEN_FLOATTYPE  */
+  YYSYMBOL_TOKEN_CHARTYPE = 36,            /* TOKEN_CHARTYPE  */
+  YYSYMBOL_TOKEN_STRINGTYPE = 37,          /* TOKEN_STRINGTYPE  */
+  YYSYMBOL_TOKEN_BREAKSTMT = 38,           /* TOKEN_BREAKSTMT  */
+  YYSYMBOL_TOKEN_CONTINUESTMT = 39,        /* TOKEN_CONTINUESTMT  */
+  YYSYMBOL_TOKEN_MAINFUNC = 40,            /* TOKEN_MAINFUNC  */
+  YYSYMBOL_TOKEN_LOOP = 41,                /* TOKEN_LOOP  */
+  YYSYMBOL_TOKEN_RETURN = 42,              /* TOKEN_RETURN  */
+  YYSYMBOL_TOKEN_IFCONDITION = 43,         /* TOKEN_IFCONDITION  */
+  YYSYMBOL_TOKEN_COMMENT = 44,             /* TOKEN_COMMENT  */
+  YYSYMBOL_YYACCEPT = 45,                  /* $accept  */
+  YYSYMBOL_PROGRAM = 46,                   /* PROGRAM  */
+  YYSYMBOL_GLOBAL_DECLARE = 47,            /* GLOBAL_DECLARE  */
+  YYSYMBOL_PGM = 48,                       /* PGM  */
+  YYSYMBOL_49_1 = 49,                      /* $@1  */
+  YYSYMBOL_F_ARG = 50,                     /* F_ARG  */
+  YYSYMBOL_STMTS = 51,                     /* STMTS  */
+  YYSYMBOL_STMT = 52,                      /* STMT  */
+  YYSYMBOL_PRINTFUNC = 53,                 /* PRINTFUNC  */
+  YYSYMBOL_TYPE = 54,                      /* TYPE  */
+  YYSYMBOL_EXP = 55,                       /* EXP  */
+  YYSYMBOL_LOOP = 56,                      /* LOOP  */
+  YYSYMBOL_57_2 = 57,                      /* $@2  */
+  YYSYMBOL_58_3 = 58,                      /* $@3  */
+  YYSYMBOL_59_4 = 59,                      /* $@4  */
+  YYSYMBOL_CONDITION = 60,                 /* CONDITION  */
+  YYSYMBOL_61_5 = 61,                      /* $@5  */
+  YYSYMBOL_ELSECON = 62,                   /* ELSECON  */
+  YYSYMBOL_STMT_RETURN = 63,               /* STMT_RETURN  */
+  YYSYMBOL_STMT_DECLARE = 64,              /* STMT_DECLARE  */
+  YYSYMBOL_65_6 = 65,                      /* $@6  */
+  YYSYMBOL_ARRAY_VAR = 66,                 /* ARRAY_VAR  */
+  YYSYMBOL_IDS = 67,                       /* IDS  */
+  YYSYMBOL_CALL = 68,                      /* CALL  */
+  YYSYMBOL_ARGS = 69,                      /* ARGS  */
+  YYSYMBOL_STMT_ASSIGN = 70                /* STMT_ASSIGN  */
+};
+typedef enum yysymbol_kind_t yysymbol_kind_t;
+
+
+
+
+#ifdef short
+# undef short
+#endif
+
+/* On compilers that do not define __PTRDIFF_MAX__ etc., make sure
+   <limits.h> and (if available) <stdint.h> are included
+   so that the code can choose integer types of a good width.  */
+
+#ifndef __PTRDIFF_MAX__
+# include <limits.h> /* INFRINGES ON USER NAME SPACE */
+# if defined __STDC_VERSION__ && 199901 <= __STDC_VERSION__
+#  include <stdint.h> /* INFRINGES ON USER NAME SPACE */
+#  define YY_STDINT_H
+# endif
+#endif
+
+/* Narrow types that promote to a signed type and that can represent a
+   signed or unsigned integer of at least N bits.  In tables they can
+   save space and decrease cache pressure.  Promoting to a signed type
+   helps avoid bugs in integer arithmetic.  */
+
+#ifdef __INT_LEAST8_MAX__
+typedef __INT_LEAST8_TYPE__ yytype_int8;
+#elif defined YY_STDINT_H
+typedef int_least8_t yytype_int8;
+#else
+typedef signed char yytype_int8;
+#endif
+
+#ifdef __INT_LEAST16_MAX__
+typedef __INT_LEAST16_TYPE__ yytype_int16;
+#elif defined YY_STDINT_H
+typedef int_least16_t yytype_int16;
+#else
+typedef short yytype_int16;
+#endif
+
+/* Work around bug in HP-UX 11.23, which defines these macros
+   incorrectly for preprocessor constants.  This workaround can likely
+   be removed in 2023, as HPE has promised support for HP-UX 11.23
+   (aka HP-UX 11i v2) only through the end of 2022; see Table 2 of
+   <https://h20195.www2.hpe.com/V2/getpdf.aspx/4AA4-7673ENW.pdf>.  */
+#ifdef __hpux
+# undef UINT_LEAST8_MAX
+# undef UINT_LEAST16_MAX
+# define UINT_LEAST8_MAX 255
+# define UINT_LEAST16_MAX 65535
+#endif
+
+#if defined __UINT_LEAST8_MAX__ && __UINT_LEAST8_MAX__ <= __INT_MAX__
+typedef __UINT_LEAST8_TYPE__ yytype_uint8;
+#elif (!defined __UINT_LEAST8_MAX__ && defined YY_STDINT_H \
+       && UINT_LEAST8_MAX <= INT_MAX)
+typedef uint_least8_t yytype_uint8;
+#elif !defined __UINT_LEAST8_MAX__ && UCHAR_MAX <= INT_MAX
+typedef unsigned char yytype_uint8;
+#else
+typedef short yytype_uint8;
+#endif
+
+#if defined __UINT_LEAST16_MAX__ && __UINT_LEAST16_MAX__ <= __INT_MAX__
+typedef __UINT_LEAST16_TYPE__ yytype_uint16;
+#elif (!defined __UINT_LEAST16_MAX__ && defined YY_STDINT_H \
+       && UINT_LEAST16_MAX <= INT_MAX)
+typedef uint_least16_t yytype_uint16;
+#elif !defined __UINT_LEAST16_MAX__ && USHRT_MAX <= INT_MAX
+typedef unsigned short yytype_uint16;
+#else
+typedef int yytype_uint16;
+#endif
+
+#ifndef YYPTRDIFF_T
+# if defined __PTRDIFF_TYPE__ && defined __PTRDIFF_MAX__
+#  define YYPTRDIFF_T __PTRDIFF_TYPE__
+#  define YYPTRDIFF_MAXIMUM __PTRDIFF_MAX__
+# elif defined PTRDIFF_MAX
+#  ifndef ptrdiff_t
+#   include <stddef.h> /* INFRINGES ON USER NAME SPACE */
+#  endif
+#  define YYPTRDIFF_T ptrdiff_t
+#  define YYPTRDIFF_MAXIMUM PTRDIFF_MAX
+# else
+#  define YYPTRDIFF_T long
+#  define YYPTRDIFF_MAXIMUM LONG_MAX
+# endif
+#endif
+
+#ifndef YYSIZE_T
+# ifdef __SIZE_TYPE__
+#  define YYSIZE_T __SIZE_TYPE__
+# elif defined size_t
+#  define YYSIZE_T size_t
+# elif defined __STDC_VERSION__ && 199901 <= __STDC_VERSION__
+#  include <stddef.h> /* INFRINGES ON USER NAME SPACE */
+#  define YYSIZE_T size_t
+# else
+#  define YYSIZE_T unsigned
+# endif
+#endif
+
+#define YYSIZE_MAXIMUM                                  \
+  YY_CAST (YYPTRDIFF_T,                                 \
+           (YYPTRDIFF_MAXIMUM < YY_CAST (YYSIZE_T, -1)  \
+            ? YYPTRDIFF_MAXIMUM                         \
+            : YY_CAST (YYSIZE_T, -1)))
+
+#define YYSIZEOF(X) YY_CAST (YYPTRDIFF_T, sizeof (X))
+
+
+/* Stored state numbers (used for stacks). */
+typedef yytype_uint8 yy_state_t;
+
+/* State numbers in computations.  */
+typedef int yy_state_fast_t;
+
+#ifndef YY_
+# if defined YYENABLE_NLS && YYENABLE_NLS
+#  if ENABLE_NLS
+#   include <libintl.h> /* INFRINGES ON USER NAME SPACE */
+#   define YY_(Msgid) dgettext ("bison-runtime", Msgid)
+#  endif
+# endif
+# ifndef YY_
+#  define YY_(Msgid) Msgid
+# endif
+#endif
+
+
+#ifndef YY_ATTRIBUTE_PURE
+# if defined __GNUC__ && 2 < __GNUC__ + (96 <= __GNUC_MINOR__)
+#  define YY_ATTRIBUTE_PURE __attribute__ ((__pure__))
+# else
+#  define YY_ATTRIBUTE_PURE
+# endif
+#endif
+
+#ifndef YY_ATTRIBUTE_UNUSED
+# if defined __GNUC__ && 2 < __GNUC__ + (7 <= __GNUC_MINOR__)
+#  define YY_ATTRIBUTE_UNUSED __attribute__ ((__unused__))
+# else
+#  define YY_ATTRIBUTE_UNUSED
+# endif
+#endif
+
+/* Suppress unused-variable warnings by "using" E.  */
+#if ! defined lint || defined __GNUC__
+# define YY_USE(E) ((void) (E))
+#else
+# define YY_USE(E) /* empty */
+#endif
+
+/* Suppress an incorrect diagnostic about yylval being uninitialized.  */
+#if defined __GNUC__ && ! defined __ICC && 406 <= __GNUC__ * 100 + __GNUC_MINOR__
+# if __GNUC__ * 100 + __GNUC_MINOR__ < 407
+#  define YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN                           \
+    _Pragma ("GCC diagnostic push")                                     \
+    _Pragma ("GCC diagnostic ignored \"-Wuninitialized\"")
+# else
+#  define YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN                           \
+    _Pragma ("GCC diagnostic push")                                     \
+    _Pragma ("GCC diagnostic ignored \"-Wuninitialized\"")              \
+    _Pragma ("GCC diagnostic ignored \"-Wmaybe-uninitialized\"")
+# endif
+# define YY_IGNORE_MAYBE_UNINITIALIZED_END      \
+    _Pragma ("GCC diagnostic pop")
+#else
+# define YY_INITIAL_VALUE(Value) Value
+#endif
+#ifndef YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
+# define YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
+# define YY_IGNORE_MAYBE_UNINITIALIZED_END
+#endif
+#ifndef YY_INITIAL_VALUE
+# define YY_INITIAL_VALUE(Value) /* Nothing. */
+#endif
+
+#if defined __cplusplus && defined __GNUC__ && ! defined __ICC && 6 <= __GNUC__
+# define YY_IGNORE_USELESS_CAST_BEGIN                          \
+    _Pragma ("GCC diagnostic push")                            \
+    _Pragma ("GCC diagnostic ignored \"-Wuseless-cast\"")
+# define YY_IGNORE_USELESS_CAST_END            \
+    _Pragma ("GCC diagnostic pop")
+#endif
+#ifndef YY_IGNORE_USELESS_CAST_BEGIN
+# define YY_IGNORE_USELESS_CAST_BEGIN
+# define YY_IGNORE_USELESS_CAST_END
+#endif
+
+
+#define YY_ASSERT(E) ((void) (0 && (E)))
+
+#if !defined yyoverflow
+
+/* The parser invokes alloca or malloc; define the necessary symbols.  */
+
+# ifdef YYSTACK_USE_ALLOCA
+#  if YYSTACK_USE_ALLOCA
+#   ifdef __GNUC__
+#    define YYSTACK_ALLOC __builtin_alloca
+#   elif defined __BUILTIN_VA_ARG_INCR
+#    include <alloca.h> /* INFRINGES ON USER NAME SPACE */
+#   elif defined _AIX
+#    define YYSTACK_ALLOC __alloca
+#   elif defined _MSC_VER
+#    include <malloc.h> /* INFRINGES ON USER NAME SPACE */
+#    define alloca _alloca
+#   else
+#    define YYSTACK_ALLOC alloca
+#    if ! defined _ALLOCA_H && ! defined EXIT_SUCCESS
+#     include <stdlib.h> /* INFRINGES ON USER NAME SPACE */
+      /* Use EXIT_SUCCESS as a witness for stdlib.h.  */
+#     ifndef EXIT_SUCCESS
+#      define EXIT_SUCCESS 0
+#     endif
+#    endif
+#   endif
+#  endif
+# endif
+
+# ifdef YYSTACK_ALLOC
+   /* Pacify GCC's 'empty if-body' warning.  */
+#  define YYSTACK_FREE(Ptr) do { /* empty */; } while (0)
+#  ifndef YYSTACK_ALLOC_MAXIMUM
+    /* The OS might guarantee only one guard page at the bottom of the stack,
+       and a page size can be as small as 4096 bytes.  So we cannot safely
+       invoke alloca (N) if N exceeds 4096.  Use a slightly smaller number
+       to allow for a few compiler-allocated temporary stack slots.  */
+#   define YYSTACK_ALLOC_MAXIMUM 4032 /* reasonable circa 2006 */
+#  endif
+# else
+#  define YYSTACK_ALLOC YYMALLOC
+#  define YYSTACK_FREE YYFREE
+#  ifndef YYSTACK_ALLOC_MAXIMUM
+#   define YYSTACK_ALLOC_MAXIMUM YYSIZE_MAXIMUM
+#  endif
+#  if (defined __cplusplus && ! defined EXIT_SUCCESS \
+       && ! ((defined YYMALLOC || defined malloc) \
+             && (defined YYFREE || defined free)))
+#   include <stdlib.h> /* INFRINGES ON USER NAME SPACE */
+#   ifndef EXIT_SUCCESS
+#    define EXIT_SUCCESS 0
+#   endif
+#  endif
+#  ifndef YYMALLOC
+#   define YYMALLOC malloc
+#   if ! defined malloc && ! defined EXIT_SUCCESS
+void *malloc (YYSIZE_T); /* INFRINGES ON USER NAME SPACE */
+#   endif
+#  endif
+#  ifndef YYFREE
+#   define YYFREE free
+#   if ! defined free && ! defined EXIT_SUCCESS
+void free (void *); /* INFRINGES ON USER NAME SPACE */
+#   endif
+#  endif
+# endif
+#endif /* !defined yyoverflow */
+
+#if (! defined yyoverflow \
+     && (! defined __cplusplus \
+         || (defined YYSTYPE_IS_TRIVIAL && YYSTYPE_IS_TRIVIAL)))
+
+/* A type that is properly aligned for any stack member.  */
+union yyalloc
+{
+  yy_state_t yyss_alloc;
+  YYSTYPE yyvs_alloc;
+};
+
+/* The size of the maximum gap between one aligned stack and the next.  */
+# define YYSTACK_GAP_MAXIMUM (YYSIZEOF (union yyalloc) - 1)
+
+/* The size of an array large to enough to hold all stacks, each with
+   N elements.  */
+# define YYSTACK_BYTES(N) \
+     ((N) * (YYSIZEOF (yy_state_t) + YYSIZEOF (YYSTYPE)) \
+      + YYSTACK_GAP_MAXIMUM)
+
+# define YYCOPY_NEEDED 1
+
+/* Relocate STACK from its old location to the new one.  The
+   local variables YYSIZE and YYSTACKSIZE give the old and new number of
+   elements in the stack, and YYPTR gives the new location of the
+   stack.  Advance YYPTR to a properly aligned location for the next
+   stack.  */
+# define YYSTACK_RELOCATE(Stack_alloc, Stack)                           \
+    do                                                                  \
+      {                                                                 \
+        YYPTRDIFF_T yynewbytes;                                         \
+        YYCOPY (&yyptr->Stack_alloc, Stack, yysize);                    \
+        Stack = &yyptr->Stack_alloc;                                    \
+        yynewbytes = yystacksize * YYSIZEOF (*Stack) + YYSTACK_GAP_MAXIMUM; \
+        yyptr += yynewbytes / YYSIZEOF (*yyptr);                        \
+      }                                                                 \
+    while (0)
+
+#endif
+
+#if defined YYCOPY_NEEDED && YYCOPY_NEEDED
+/* Copy COUNT objects from SRC to DST.  The source and destination do
+   not overlap.  */
+# ifndef YYCOPY
+#  if defined __GNUC__ && 1 < __GNUC__
+#   define YYCOPY(Dst, Src, Count) \
+      __builtin_memcpy (Dst, Src, YY_CAST (YYSIZE_T, (Count)) * sizeof (*(Src)))
+#  else
+#   define YYCOPY(Dst, Src, Count)              \
+      do                                        \
+        {                                       \
+          YYPTRDIFF_T yyi;                      \
+          for (yyi = 0; yyi < (Count); yyi++)   \
+            (Dst)[yyi] = (Src)[yyi];            \
+        }                                       \
+      while (0)
+#  endif
+# endif
+#endif /* !YYCOPY_NEEDED */
+
+/* YYFINAL -- State number of the termination state.  */
+#define YYFINAL  11
+/* YYLAST -- Last index in YYTABLE.  */
+#define YYLAST   273
+
+/* YYNTOKENS -- Number of terminals.  */
+#define YYNTOKENS  45
+/* YYNNTS -- Number of nonterminals.  */
+#define YYNNTS  26
+/* YYNRULES -- Number of rules.  */
+#define YYNRULES  69
+/* YYNSTATES -- Number of states.  */
+#define YYNSTATES  142
+
+/* YYMAXUTOK -- Last valid token kind.  */
+#define YYMAXUTOK   299
+
+
+/* YYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
+   as returned by yylex, with out-of-bounds checking.  */
+#define YYTRANSLATE(YYX)                                \
+  (0 <= (YYX) && (YYX) <= YYMAXUTOK                     \
+   ? YY_CAST (yysymbol_kind_t, yytranslate[YYX])        \
+   : YYSYMBOL_YYUNDEF)
+
+/* YYTRANSLATE[TOKEN-NUM] -- Symbol number corresponding to TOKEN-NUM
+   as returned by yylex.  */
+static const yytype_int8 yytranslate[] =
+{
+       0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
+       5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
+      15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
+      25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
+      35,    36,    37,    38,    39,    40,    41,    42,    43,    44
+};
+
+#if YYDEBUG
+/* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
+static const yytype_int16 yyrline[] =
+{
+       0,   102,   102,   109,   127,   135,   135,   152,   158,   170,
+     179,   185,   194,   202,   210,   215,   222,   229,   235,   242,
+     249,   256,   262,   274,   282,   289,   296,   303,   310,   318,
+     333,   352,   374,   396,   416,   428,   440,   452,   468,   479,
+     489,   502,   510,   520,   530,   539,   539,   539,   539,   559,
+     573,   573,   588,   601,   610,   610,   641,   655,   663,   671,
+     680,   693,   700,   711,   719,   728,   734,   774,   786,   794
+};
+#endif
+
+/** Accessing symbol of state STATE.  */
+#define YY_ACCESSING_SYMBOL(State) YY_CAST (yysymbol_kind_t, yystos[State])
+
+#if YYDEBUG || 0
+/* The user-facing name of the symbol whose (internal) number is
+   YYSYMBOL.  No bounds checking.  */
+static const char *yysymbol_name (yysymbol_kind_t yysymbol) YY_ATTRIBUTE_UNUSED;
+
+/* YYTNAME[SYMBOL-NUM] -- String name of the symbol SYMBOL-NUM.
+   First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
+static const char *const yytname[] =
+{
+  "\"end of file\"", "error", "\"invalid token\"", "TOKEN_CHARCONST",
+  "TOKEN_INTCONST", "TOKEN_FLOATCONST", "TOKEN_STRINGCONST", "TOKEN_ID",
+  "TOKEN_WHITESPACEspace", "TOKEN_WHITESPACEtab",
+  "TOKEN_WHITESPACEnewLine", "TOKEN_ARITHMATICOP_MINUS",
+  "TOKEN_ARITHMATICOP_DIV", "TOKEN_ARITHMATICOP_POW",
+  "TOKEN_ARITHMATICOP_PLUS", "TOKEN_ARITHMATICOP_MULT", "TOKEN_BITWISEOP",
+  "TOKEN_LOGICOP", "TOKEN_RELATIONOP", "TOKEN_ASSIGNOP",
+  "TOKEN_LOGICOP_NOT", "TOKEN_LEFTPAREN", "TOKEN_RIGHTPAREN", "TOKEN_LCB",
+  "TOKEN_RCB", "TOKEN_SEMICOLON", "TOKEN_COMMA", "TOKEN_UNTIL", "TOKEN_LB",
+  "TOKEN_RB", "TOKEN_PRFUNC", "TOKEN_ELSECONDITION", "TOKEN_INTTYPE",
+  "TOKEN_VOIDTYPE", "TOKEN_DOUBLETYPE", "TOKEN_FLOATTYPE",
+  "TOKEN_CHARTYPE", "TOKEN_STRINGTYPE", "TOKEN_BREAKSTMT",
+  "TOKEN_CONTINUESTMT", "TOKEN_MAINFUNC", "TOKEN_LOOP", "TOKEN_RETURN",
+  "TOKEN_IFCONDITION", "TOKEN_COMMENT", "$accept", "PROGRAM",
+  "GLOBAL_DECLARE", "PGM", "$@1", "F_ARG", "STMTS", "STMT", "PRINTFUNC",
+  "TYPE", "EXP", "LOOP", "$@2", "$@3", "$@4", "CONDITION", "$@5",
+  "ELSECON", "STMT_RETURN", "STMT_DECLARE", "$@6", "ARRAY_VAR", "IDS",
+  "CALL", "ARGS", "STMT_ASSIGN", YY_NULLPTR
+};
+
+static const char *
+yysymbol_name (yysymbol_kind_t yysymbol)
+{
+  return yytname[yysymbol];
+}
+#endif
+
+#define YYPACT_NINF (-87)
+
+#define yypact_value_is_default(Yyn) \
+  ((Yyn) == YYPACT_NINF)
+
+#define YYTABLE_NINF (-59)
+
+#define yytable_value_is_error(Yyn) \
+  0
+
+/* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
+   STATE-NUM.  */
+static const yytype_int16 yypact[] =
+{
+     163,   -87,   -87,   -87,   -87,   -87,   -87,     9,   -87,   -87,
+       5,   -87,     6,   173,    17,   -87,   -87,   -87,   -87,    -1,
+     173,   173,   192,   163,   173,   200,   207,   173,   173,   173,
+     173,   173,   173,   173,   173,   163,    19,    37,    88,   -87,
+      75,    45,    45,   103,    47,   258,   200,   251,   -87,    38,
+      41,   -87,    89,    27,    39,    36,   181,    49,    71,   173,
+      60,    58,    72,   -87,    78,   243,    89,    89,   -87,   -87,
+     -87,   -87,   -87,   146,   163,    46,    27,    92,   -15,   243,
+     -87,   173,   -87,   243,   173,   163,    89,    41,   -87,   -87,
+     -87,   -87,   173,   130,    85,   154,   181,   219,    91,   231,
+     -87,   113,   -87,   -87,   130,   -87,   -87,   108,   243,   -87,
+     -87,   173,   105,   -87,     3,   -87,   243,    89,    41,   122,
+     -87,     3,   111,   115,    41,   -87,   173,   109,     3,   243,
+     118,   -87,   131,   129,   -87,   132,    89,    89,   149,   150,
+     -87,   -87
+};
+
+/* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
+   Performed when YYTABLE does not specify something else to do.  Zero
+   means the default is an error.  */
+static const yytype_int8 yydefact[] =
+{
+       7,    24,    23,    25,    26,    27,    28,     0,     2,     4,
+       0,     1,     5,     0,     0,    43,    41,    44,    42,    40,
+       0,     0,     0,    10,     0,    38,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     7,     0,     0,     0,    39,
+      30,    31,    34,    32,    33,    36,    35,    29,     3,     0,
+      58,    37,    14,     0,     9,    40,     0,     0,     0,     0,
+       0,     0,     0,    20,     0,    19,    14,    14,    17,    15,
+      18,    16,    57,     0,    10,    65,     0,     0,    40,    67,
+      68,     0,    45,    53,     0,     7,    14,    58,    13,    12,
+      56,     8,     0,    65,     0,     0,     0,     0,     0,     0,
+       6,     0,    11,    54,    65,    63,    62,    37,    66,    69,
+      22,     0,     0,     5,    61,    64,    46,    14,    58,     0,
+      55,    61,     0,     0,    58,    59,     0,    49,    61,    47,
+       0,    60,     0,     0,    51,     0,    14,    14,     0,     0,
+      52,    48
+};
+
+/* YYPGOTO[NTERM-NUM].  */
+static const yytype_int8 yypgoto[] =
+{
+     -87,   -87,   119,    96,   -87,   116,   -63,   -87,   -87,     1,
+     -13,   -87,   -87,   -87,   -87,   -87,   -87,   -87,   -87,   -87,
+     -87,   -48,   -44,   -51,   -67,   -86
+};
+
+/* YYDEFGOTO[NTERM-NUM].  */
+static const yytype_uint8 yydefgoto[] =
+{
+       0,     7,     8,     9,    14,    36,    61,    62,    63,    64,
+      65,    66,    98,   122,   132,    67,   130,   134,    68,    69,
+     114,    77,   120,    70,    94,    71
+};
+
+/* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
+   positive, shift that token.  If negative, reduce the rule whose
+   number is the opposite.  If YYTABLE_NINF, syntax error.  */
+static const yytype_int16 yytable[] =
+{
+      22,    10,    54,    88,    89,    80,    75,    25,    26,    11,
+     118,    38,    12,    24,    40,    41,    42,    43,    44,    45,
+      46,    47,    56,   102,    37,    13,   105,    24,   121,   119,
+      15,    16,    17,    18,    19,   121,    10,   115,    23,   103,
+      73,    49,   121,    79,    50,   109,    83,    20,    21,    15,
+      16,    17,    18,    19,   123,   -58,    72,    75,    29,    28,
+      29,    52,    93,    95,    76,    74,    20,    21,    97,    53,
+      81,    99,    92,   138,   139,    37,   128,   125,    82,   104,
+      93,    84,    85,   108,   131,    87,   101,    28,    29,    30,
+      31,    93,    15,    16,    17,    18,    55,    86,   116,    27,
+      28,    29,    30,    31,    32,    33,    34,   106,    56,    20,
+      21,    96,   111,   129,   -21,    28,    29,    51,    31,    57,
+     113,     1,     2,     3,     4,     5,     6,   -56,   117,   124,
+      58,    59,    60,    15,    16,    17,    18,    19,   126,   127,
+     -50,    27,    28,    29,    30,    31,    32,    33,    34,   133,
+      20,    21,   136,   135,    48,   137,    92,    27,    28,    29,
+      30,    31,    32,    33,    34,    27,    28,    29,    30,    31,
+      32,    33,    34,   140,   141,    90,    15,    16,    17,    18,
+      19,   100,     0,   107,    15,    16,    17,    18,    78,     0,
+      91,     0,     0,    20,    21,     1,     2,     3,     4,     5,
+       6,    20,    21,    27,    28,    29,    30,    31,    32,    33,
+      34,    27,    28,    29,    30,    31,    32,    35,    27,    28,
+      29,    30,    31,    32,    33,    34,     0,     0,     0,    39,
+      27,    28,    29,    30,    31,    32,    33,    34,     0,     0,
+       0,   110,    27,    28,    29,    30,    31,    32,    33,    34,
+       0,     0,     0,   112,    27,    28,    29,    30,    31,    32,
+      33,    34,    27,    28,    29,    30,    31,    32,    33,    27,
+      28,    29,    30,    31
+};
+
+static const yytype_int16 yycheck[] =
+{
+      13,     0,    50,    66,    67,    56,    21,    20,    21,     0,
+       7,    24,     7,    28,    27,    28,    29,    30,    31,    32,
+      33,    34,    19,    86,    23,    19,    93,    28,   114,    26,
+       3,     4,     5,     6,     7,   121,    35,   104,    21,    87,
+      53,    22,   128,    56,     7,    96,    59,    20,    21,     3,
+       4,     5,     6,     7,   117,    19,    29,    21,    13,    12,
+      13,    23,    75,    76,    28,    26,    20,    21,    81,    28,
+      21,    84,    26,   136,   137,    74,   124,   121,     7,    92,
+      93,    21,    24,    96,   128,     7,    85,    12,    13,    14,
+      15,   104,     3,     4,     5,     6,     7,    25,   111,    11,
+      12,    13,    14,    15,    16,    17,    18,    22,    19,    20,
+      21,    19,    21,   126,    25,    12,    13,    29,    15,    30,
+       7,    32,    33,    34,    35,    36,    37,    19,    23,     7,
+      41,    42,    43,     3,     4,     5,     6,     7,    27,    24,
+      31,    11,    12,    13,    14,    15,    16,    17,    18,    31,
+      20,    21,    23,    22,    35,    23,    26,    11,    12,    13,
+      14,    15,    16,    17,    18,    11,    12,    13,    14,    15,
+      16,    17,    18,    24,    24,    29,     3,     4,     5,     6,
+       7,    85,    -1,    29,     3,     4,     5,     6,     7,    -1,
+      74,    -1,    -1,    20,    21,    32,    33,    34,    35,    36,
+      37,    20,    21,    11,    12,    13,    14,    15,    16,    17,
+      18,    11,    12,    13,    14,    15,    16,    25,    11,    12,
+      13,    14,    15,    16,    17,    18,    -1,    -1,    -1,    22,
+      11,    12,    13,    14,    15,    16,    17,    18,    -1,    -1,
+      -1,    22,    11,    12,    13,    14,    15,    16,    17,    18,
+      -1,    -1,    -1,    22,    11,    12,    13,    14,    15,    16,
+      17,    18,    11,    12,    13,    14,    15,    16,    17,    11,
+      12,    13,    14,    15
+};
+
+/* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
+   state STATE-NUM.  */
+static const yytype_int8 yystos[] =
+{
+       0,    32,    33,    34,    35,    36,    37,    46,    47,    48,
+      54,     0,     7,    19,    49,     3,     4,     5,     6,     7,
+      20,    21,    55,    21,    28,    55,    55,    11,    12,    13,
+      14,    15,    16,    17,    18,    25,    50,    54,    55,    22,
+      55,    55,    55,    55,    55,    55,    55,    55,    47,    22,
+       7,    29,    23,    28,    66,     7,    19,    30,    41,    42,
+      43,    51,    52,    53,    54,    55,    56,    60,    63,    64,
+      68,    70,    29,    55,    26,    21,    28,    66,     7,    55,
+      68,    21,     7,    55,    21,    24,    25,     7,    51,    51,
+      29,    50,    26,    55,    69,    55,    19,    55,    57,    55,
+      48,    54,    51,    66,    55,    69,    22,    29,    55,    68,
+      22,    21,    22,     7,    65,    69,    55,    23,     7,    26,
+      67,    70,    58,    51,     7,    67,    27,    24,    66,    55,
+      61,    67,    59,    31,    62,    22,    23,    23,    51,    51,
+      24,    24
+};
+
+/* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
+static const yytype_int8 yyr1[] =
+{
+       0,    45,    46,    47,    47,    49,    48,    48,    50,    50,
+      50,    51,    51,    51,    51,    52,    52,    52,    52,    52,
+      52,    52,    53,    54,    54,    54,    54,    54,    54,    55,
+      55,    55,    55,    55,    55,    55,    55,    55,    55,    55,
+      55,    55,    55,    55,    55,    57,    58,    59,    56,    60,
+      61,    60,    62,    63,    65,    64,    66,    66,    66,    67,
+      67,    67,    68,    69,    69,    69,    70,    70,    70,    70
+};
+
+/* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
+static const yytype_int8 yyr2[] =
+{
+       0,     2,     1,     6,     1,     0,    10,     0,     5,     3,
+       0,     3,     2,     2,     0,     1,     1,     1,     1,     1,
+       1,     0,     4,     1,     1,     1,     1,     1,     1,     3,
+       3,     3,     3,     3,     3,     3,     3,     4,     2,     3,
+       1,     1,     1,     1,     1,     0,     0,     0,    13,     7,
+       0,     9,     4,     2,     0,     5,     3,     2,     0,     2,
+       4,     0,     4,     2,     3,     0,     4,     2,     2,     4
+};
+
+
+enum { YYENOMEM = -2 };
+
+#define yyerrok         (yyerrstatus = 0)
+#define yyclearin       (yychar = YYEMPTY)
+
+#define YYACCEPT        goto yyacceptlab
+#define YYABORT         goto yyabortlab
+#define YYERROR         goto yyerrorlab
+#define YYNOMEM         goto yyexhaustedlab
+
+
+#define YYRECOVERING()  (!!yyerrstatus)
+
+#define YYBACKUP(Token, Value)                                    \
+  do                                                              \
+    if (yychar == YYEMPTY)                                        \
+      {                                                           \
+        yychar = (Token);                                         \
+        yylval = (Value);                                         \
+        YYPOPSTACK (yylen);                                       \
+        yystate = *yyssp;                                         \
+        goto yybackup;                                            \
+      }                                                           \
+    else                                                          \
+      {                                                           \
+        yyerror (YY_("syntax error: cannot back up")); \
+        YYERROR;                                                  \
+      }                                                           \
+  while (0)
+
+/* Backward compatibility with an undocumented macro.
+   Use YYerror or YYUNDEF. */
+#define YYERRCODE YYUNDEF
+
+
+/* Enable debugging if requested.  */
+#if YYDEBUG
+
+# ifndef YYFPRINTF
+#  include <stdio.h> /* INFRINGES ON USER NAME SPACE */
+#  define YYFPRINTF fprintf
+# endif
+
+# define YYDPRINTF(Args)                        \
+do {                                            \
+  if (yydebug)                                  \
+    YYFPRINTF Args;                             \
+} while (0)
+
+
+
+
+# define YY_SYMBOL_PRINT(Title, Kind, Value, Location)                    \
+do {                                                                      \
+  if (yydebug)                                                            \
+    {                                                                     \
+      YYFPRINTF (stderr, "%s ", Title);                                   \
+      yy_symbol_print (stderr,                                            \
+                  Kind, Value); \
+      YYFPRINTF (stderr, "\n");                                           \
+    }                                                                     \
+} while (0)
+
+
+/*-----------------------------------.
+| Print this symbol's value on YYO.  |
+`-----------------------------------*/
+
+static void
+yy_symbol_value_print (FILE *yyo,
+                       yysymbol_kind_t yykind, YYSTYPE const * const yyvaluep)
+{
+  FILE *yyoutput = yyo;
+  YY_USE (yyoutput);
+  if (!yyvaluep)
+    return;
+  YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
+  YY_USE (yykind);
+  YY_IGNORE_MAYBE_UNINITIALIZED_END
+}
+
+
+/*---------------------------.
+| Print this symbol on YYO.  |
+`---------------------------*/
+
+static void
+yy_symbol_print (FILE *yyo,
+                 yysymbol_kind_t yykind, YYSTYPE const * const yyvaluep)
+{
+  YYFPRINTF (yyo, "%s %s (",
+             yykind < YYNTOKENS ? "token" : "nterm", yysymbol_name (yykind));
+
+  yy_symbol_value_print (yyo, yykind, yyvaluep);
+  YYFPRINTF (yyo, ")");
+}
+
+/*------------------------------------------------------------------.
+| yy_stack_print -- Print the state stack from its BOTTOM up to its |
+| TOP (included).                                                   |
+`------------------------------------------------------------------*/
+
+static void
+yy_stack_print (yy_state_t *yybottom, yy_state_t *yytop)
+{
+  YYFPRINTF (stderr, "Stack now");
+  for (; yybottom <= yytop; yybottom++)
+    {
+      int yybot = *yybottom;
+      YYFPRINTF (stderr, " %d", yybot);
+    }
+  YYFPRINTF (stderr, "\n");
+}
+
+# define YY_STACK_PRINT(Bottom, Top)                            \
+do {                                                            \
+  if (yydebug)                                                  \
+    yy_stack_print ((Bottom), (Top));                           \
+} while (0)
+
+
+/*------------------------------------------------.
+| Report that the YYRULE is going to be reduced.  |
+`------------------------------------------------*/
+
+static void
+yy_reduce_print (yy_state_t *yyssp, YYSTYPE *yyvsp,
+                 int yyrule)
+{
+  int yylno = yyrline[yyrule];
+  int yynrhs = yyr2[yyrule];
+  int yyi;
+  YYFPRINTF (stderr, "Reducing stack by rule %d (line %d):\n",
+             yyrule - 1, yylno);
+  /* The symbols being reduced.  */
+  for (yyi = 0; yyi < yynrhs; yyi++)
+    {
+      YYFPRINTF (stderr, "   $%d = ", yyi + 1);
+      yy_symbol_print (stderr,
+                       YY_ACCESSING_SYMBOL (+yyssp[yyi + 1 - yynrhs]),
+                       &yyvsp[(yyi + 1) - (yynrhs)]);
+      YYFPRINTF (stderr, "\n");
+    }
+}
+
+# define YY_REDUCE_PRINT(Rule)          \
+do {                                    \
+  if (yydebug)                          \
+    yy_reduce_print (yyssp, yyvsp, Rule); \
+} while (0)
+
+/* Nonzero means print parse trace.  It is left uninitialized so that
+   multiple parsers can coexist.  */
+int yydebug;
+#else /* !YYDEBUG */
+# define YYDPRINTF(Args) ((void) 0)
+# define YY_SYMBOL_PRINT(Title, Kind, Value, Location)
+# define YY_STACK_PRINT(Bottom, Top)
+# define YY_REDUCE_PRINT(Rule)
+#endif /* !YYDEBUG */
+
+
+/* YYINITDEPTH -- initial size of the parser's stacks.  */
+#ifndef YYINITDEPTH
+# define YYINITDEPTH 200
+#endif
+
+/* YYMAXDEPTH -- maximum size the stacks can grow to (effective only
+   if the built-in stack extension method is used).
+
+   Do not make this value too large; the results are undefined if
+   YYSTACK_ALLOC_MAXIMUM < YYSTACK_BYTES (YYMAXDEPTH)
+   evaluated with infinite-precision integer arithmetic.  */
+
+#ifndef YYMAXDEPTH
+# define YYMAXDEPTH 10000
+#endif
+
+
+
+
+
+
+/*-----------------------------------------------.
+| Release the memory associated to this symbol.  |
+`-----------------------------------------------*/
+
+static void
+yydestruct (const char *yymsg,
+            yysymbol_kind_t yykind, YYSTYPE *yyvaluep)
+{
+  YY_USE (yyvaluep);
+  if (!yymsg)
+    yymsg = "Deleting";
+  YY_SYMBOL_PRINT (yymsg, yykind, yyvaluep, yylocationp);
+
+  YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
+  YY_USE (yykind);
+  YY_IGNORE_MAYBE_UNINITIALIZED_END
+}
+
+
+/* Lookahead token kind.  */
+int yychar;
+
+/* The semantic value of the lookahead symbol.  */
+YYSTYPE yylval;
+/* Number of syntax errors so far.  */
+int yynerrs;
+
+
+
+
+/*----------.
+| yyparse.  |
+`----------*/
+
+int
+yyparse (void)
+{
+    yy_state_fast_t yystate = 0;
+    /* Number of tokens to shift before error messages enabled.  */
+    int yyerrstatus = 0;
+
+    /* Refer to the stacks through separate pointers, to allow yyoverflow
+       to reallocate them elsewhere.  */
+
+    /* Their size.  */
+    YYPTRDIFF_T yystacksize = YYINITDEPTH;
+
+    /* The state stack: array, bottom, top.  */
+    yy_state_t yyssa[YYINITDEPTH];
+    yy_state_t *yyss = yyssa;
+    yy_state_t *yyssp = yyss;
+
+    /* The semantic value stack: array, bottom, top.  */
+    YYSTYPE yyvsa[YYINITDEPTH];
+    YYSTYPE *yyvs = yyvsa;
+    YYSTYPE *yyvsp = yyvs;
+
+  int yyn;
+  /* The return value of yyparse.  */
+  int yyresult;
+  /* Lookahead symbol kind.  */
+  yysymbol_kind_t yytoken = YYSYMBOL_YYEMPTY;
+  /* The variables used to return semantic value and location from the
+     action routines.  */
+  YYSTYPE yyval;
+
+
+
+#define YYPOPSTACK(N)   (yyvsp -= (N), yyssp -= (N))
+
+  /* The number of symbols on the RHS of the reduced rule.
+     Keep to zero when no symbol should be popped.  */
+  int yylen = 0;
+
+  YYDPRINTF ((stderr, "Starting parse\n"));
+
+  yychar = YYEMPTY; /* Cause a token to be read.  */
+
+  goto yysetstate;
+
+
+/*------------------------------------------------------------.
+| yynewstate -- push a new state, which is found in yystate.  |
+`------------------------------------------------------------*/
+yynewstate:
+  /* In all cases, when you get here, the value and location stacks
+     have just been pushed.  So pushing a state here evens the stacks.  */
+  yyssp++;
+
+
+/*--------------------------------------------------------------------.
+| yysetstate -- set current state (the top of the stack) to yystate.  |
+`--------------------------------------------------------------------*/
+yysetstate:
+  YYDPRINTF ((stderr, "Entering state %d\n", yystate));
+  YY_ASSERT (0 <= yystate && yystate < YYNSTATES);
+  YY_IGNORE_USELESS_CAST_BEGIN
+  *yyssp = YY_CAST (yy_state_t, yystate);
+  YY_IGNORE_USELESS_CAST_END
+  YY_STACK_PRINT (yyss, yyssp);
+
+  if (yyss + yystacksize - 1 <= yyssp)
+#if !defined yyoverflow && !defined YYSTACK_RELOCATE
+    YYNOMEM;
+#else
+    {
+      /* Get the current used size of the three stacks, in elements.  */
+      YYPTRDIFF_T yysize = yyssp - yyss + 1;
+
+# if defined yyoverflow
+      {
+        /* Give user a chance to reallocate the stack.  Use copies of
+           these so that the &'s don't force the real ones into
+           memory.  */
+        yy_state_t *yyss1 = yyss;
+        YYSTYPE *yyvs1 = yyvs;
+
+        /* Each stack pointer address is followed by the size of the
+           data in use in that stack, in bytes.  This used to be a
+           conditional around just the two extra args, but that might
+           be undefined if yyoverflow is a macro.  */
+        yyoverflow (YY_("memory exhausted"),
+                    &yyss1, yysize * YYSIZEOF (*yyssp),
+                    &yyvs1, yysize * YYSIZEOF (*yyvsp),
+                    &yystacksize);
+        yyss = yyss1;
+        yyvs = yyvs1;
+      }
+# else /* defined YYSTACK_RELOCATE */
+      /* Extend the stack our own way.  */
+      if (YYMAXDEPTH <= yystacksize)
+        YYNOMEM;
+      yystacksize *= 2;
+      if (YYMAXDEPTH < yystacksize)
+        yystacksize = YYMAXDEPTH;
+
+      {
+        yy_state_t *yyss1 = yyss;
+        union yyalloc *yyptr =
+          YY_CAST (union yyalloc *,
+                   YYSTACK_ALLOC (YY_CAST (YYSIZE_T, YYSTACK_BYTES (yystacksize))));
+        if (! yyptr)
+          YYNOMEM;
+        YYSTACK_RELOCATE (yyss_alloc, yyss);
+        YYSTACK_RELOCATE (yyvs_alloc, yyvs);
+#  undef YYSTACK_RELOCATE
+        if (yyss1 != yyssa)
+          YYSTACK_FREE (yyss1);
+      }
+# endif
+
+      yyssp = yyss + yysize - 1;
+      yyvsp = yyvs + yysize - 1;
+
+      YY_IGNORE_USELESS_CAST_BEGIN
+      YYDPRINTF ((stderr, "Stack size increased to %ld\n",
+                  YY_CAST (long, yystacksize)));
+      YY_IGNORE_USELESS_CAST_END
+
+      if (yyss + yystacksize - 1 <= yyssp)
+        YYABORT;
+    }
+#endif /* !defined yyoverflow && !defined YYSTACK_RELOCATE */
+
+
+  if (yystate == YYFINAL)
+    YYACCEPT;
+
+  goto yybackup;
+
+
+/*-----------.
+| yybackup.  |
+`-----------*/
+yybackup:
+  /* Do appropriate processing given the current state.  Read a
+     lookahead token if we need one and don't already have one.  */
+
+  /* First try to decide what to do without reference to lookahead token.  */
+  yyn = yypact[yystate];
+  if (yypact_value_is_default (yyn))
+    goto yydefault;
+
+  /* Not known => get a lookahead token if don't already have one.  */
+
+  /* YYCHAR is either empty, or end-of-input, or a valid lookahead.  */
+  if (yychar == YYEMPTY)
+    {
+      YYDPRINTF ((stderr, "Reading a token\n"));
+      yychar = yylex ();
+    }
+
+  if (yychar <= YYEOF)
+    {
+      yychar = YYEOF;
+      yytoken = YYSYMBOL_YYEOF;
+      YYDPRINTF ((stderr, "Now at end of input.\n"));
+    }
+  else if (yychar == YYerror)
+    {
+      /* The scanner already issued an error message, process directly
+         to error recovery.  But do not keep the error token as
+         lookahead, it is too special and may lead us to an endless
+         loop in error recovery. */
+      yychar = YYUNDEF;
+      yytoken = YYSYMBOL_YYerror;
+      goto yyerrlab1;
+    }
+  else
+    {
+      yytoken = YYTRANSLATE (yychar);
+      YY_SYMBOL_PRINT ("Next token is", yytoken, &yylval, &yylloc);
+    }
+
+  /* If the proper action on seeing token YYTOKEN is to reduce or to
+     detect an error, take that action.  */
+  yyn += yytoken;
+  if (yyn < 0 || YYLAST < yyn || yycheck[yyn] != yytoken)
+    goto yydefault;
+  yyn = yytable[yyn];
+  if (yyn <= 0)
+    {
+      if (yytable_value_is_error (yyn))
+        goto yyerrlab;
+      yyn = -yyn;
+      goto yyreduce;
+    }
+
+  /* Count tokens shifted since error; after three, turn off error
+     status.  */
+  if (yyerrstatus)
+    yyerrstatus--;
+
+  /* Shift the lookahead token.  */
+  YY_SYMBOL_PRINT ("Shifting", yytoken, &yylval, &yylloc);
+  yystate = yyn;
+  YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
+  *++yyvsp = yylval;
+  YY_IGNORE_MAYBE_UNINITIALIZED_END
+
+  /* Discard the shifted token.  */
+  yychar = YYEMPTY;
+  goto yynewstate;
+
+
+/*-----------------------------------------------------------.
+| yydefault -- do the default action for the current state.  |
+`-----------------------------------------------------------*/
+yydefault:
+  yyn = yydefact[yystate];
+  if (yyn == 0)
+    goto yyerrlab;
+  goto yyreduce;
+
+
+/*-----------------------------.
+| yyreduce -- do a reduction.  |
+`-----------------------------*/
+yyreduce:
+  /* yyn is the number of a rule to reduce with.  */
+  yylen = yyr2[yyn];
+
+  /* If YYLEN is nonzero, implement the default value of the action:
+     '$$ = $1'.
+
+     Otherwise, the following line sets YYVAL to garbage.
+     This behavior is undocumented and Bison
+     users should not rely upon it.  Assigning to YYVAL
+     unconditionally makes the parser a bit smaller, and it avoids a
+     GCC warning that YYVAL may be used uninitialized.  */
+  yyval = yyvsp[1-yylen];
+
+
+  YY_REDUCE_PRINT (yyn);
+  switch (yyn)
+    {
+  case 2: /* PROGRAM: GLOBAL_DECLARE  */
+#line 103 "Bison_Rule.y"
+                  {
+					NTnode = CreateTnode();
+                    strcpy(NTnode->token,"PROGRAM");
+                    NTnode = ProgramNode((yyvsp[0].node),NTnode);
+                  }
+#line 1316 "myapp.cpp"
+    break;
+
+  case 3: /* GLOBAL_DECLARE: TYPE TOKEN_ID TOKEN_ASSIGNOP EXP TOKEN_SEMICOLON GLOBAL_DECLARE  */
+#line 110 "Bison_Rule.y"
+                  {
+					tnode *a = CreateTnode();
+                    strcpy(a->token,"GLOBAL_DECLARE");
+                    a=ProgramNode((yyvsp[-5].node),a);
+                    a=ProgramNode((yyvsp[-4].string),"TOKEN_ID",a);
+                    a=ProgramNode((yyvsp[-3].string),"TOKEN_ASSIGNOP",a);
+                    a=ProgramNode((yyvsp[-2].node),a);
+                    a=ProgramNode((yyvsp[-1].string),"TOKEN_SEMICOLON",a);
+                    a=ProgramNode((yyvsp[0].node),a);
+
+                    if(table[(yyvsp[-4].string)]!="")
+                      yyerror(3,(yyvsp[-4].string));
+                    table[(yyvsp[-4].string)]=(yyvsp[-5].node)->token2;
+                    if(strcmp((yyvsp[-5].node)->token2,(yyvsp[-2].node)->token2)!= 0)
+                      yyerror(1);
+                    (yyval.node) = a;
+                  }
+#line 1338 "myapp.cpp"
+    break;
+
+  case 4: /* GLOBAL_DECLARE: PGM  */
+#line 128 "Bison_Rule.y"
+                  {
+					tnode *b = CreateTnode();
+                    strcpy(b->token,"GLOBAL_DECLARE");
+                    b=ProgramNode((yyvsp[0].node),b);
+                    (yyval.node) = b;
+                  }
+#line 1349 "myapp.cpp"
+    break;
+
+  case 5: /* $@1: %empty  */
+#line 135 "Bison_Rule.y"
+                              {}
+#line 1355 "myapp.cpp"
+    break;
+
+  case 6: /* PGM: TYPE TOKEN_ID $@1 TOKEN_LEFTPAREN F_ARG TOKEN_RIGHTPAREN TOKEN_LCB STMTS TOKEN_RCB PGM  */
+#line 136 "Bison_Rule.y"
+                                  {
+					tnode *a = CreateTnode();
+					strcpy(a->token,"PGM");
+					a=ProgramNode((yyvsp[-9].node),a);
+					a=ProgramNode((yyvsp[-8].string),"TOKEN_ID",a);
+					a=ProgramNode((yyvsp[-6].string),"TOKEN_LEFTPAREN",a);
+					a=ProgramNode((yyvsp[-5].node),a);
+					a=ProgramNode((yyvsp[-4].string),"TOKEN_RIGHTPAREN",a);
+					a=ProgramNode((yyvsp[-3].string),"TOKEN_LCB",a);
+					a=ProgramNode((yyvsp[-2].node),a);
+					a=ProgramNode((yyvsp[-1].string),"TOKEN_RCB",a);
+					(yyval.node) = a;
+
+
+
+                  }
+#line 1376 "myapp.cpp"
+    break;
+
+  case 7: /* PGM: %empty  */
+#line 152 "Bison_Rule.y"
+                 { tnode *b = CreateTnode();
+                    strcpy(b->token,"PGM");
+					b->isshow = 0;
+                    (yyval.node) = b;
+                 }
+#line 1386 "myapp.cpp"
+    break;
+
+  case 8: /* F_ARG: TYPE TOKEN_ID ARRAY_VAR TOKEN_COMMA F_ARG  */
+#line 159 "Bison_Rule.y"
+                  {
+				  tnode *a = CreateTnode();
+                    strcpy(a->token,"F_ARG");
+                    a=ProgramNode((yyvsp[-4].node),a);
+                    a=ProgramNode((yyvsp[-3].string),"TOKEN_ID",a);
+                    a=ProgramNode((yyvsp[-2].node),a);
+                    a=ProgramNode((yyvsp[-1].string),"TOKEN_COMMA",a);
+                    a=ProgramNode((yyvsp[0].node),a);
+                    table[(yyvsp[-3].string)]=(yyvsp[-4].node)->token2;
+                    (yyval.node) = a;
+                  }
+#line 1402 "myapp.cpp"
+    break;
+
+  case 9: /* F_ARG: TYPE TOKEN_ID ARRAY_VAR  */
+#line 171 "Bison_Rule.y"
+                  { tnode *b = CreateTnode();
+                    strcpy(b->token,"F_ARG");
+                    b=ProgramNode((yyvsp[-2].node),b);
+                    b=ProgramNode((yyvsp[-1].string),"TOKEN_ID",b);
+                    b=ProgramNode((yyvsp[0].node),b);
+                    table[(yyvsp[-1].string)]=(yyvsp[-2].node)->token2;
+                    (yyval.node) = b;
+                  }
+#line 1415 "myapp.cpp"
+    break;
+
+  case 10: /* F_ARG: %empty  */
+#line 179 "Bison_Rule.y"
+                 { tnode *c = CreateTnode();
+                    strcpy(c->token,"F_ARG");
+					c->isshow =0;
+                    (yyval.node) = c;
+                 }
+#line 1425 "myapp.cpp"
+    break;
+
+  case 11: /* STMTS: STMT TOKEN_SEMICOLON STMTS  */
+#line 186 "Bison_Rule.y"
+                  {
+					tnode *a = CreateTnode();
+                    strcpy(a->token,"STMTS");
+                    a=ProgramNode((yyvsp[-2].node),a);
+                    a=ProgramNode((yyvsp[-1].string),"TOKEN_SEMICOLON",a);
+                    a=ProgramNode((yyvsp[0].node),a);
+                    (yyval.node) = a;
+                  }
+#line 1438 "myapp.cpp"
+    break;
+
+  case 12: /* STMTS: CONDITION STMTS  */
+#line 195 "Bison_Rule.y"
+                  {
+					tnode *b = CreateTnode();
+                    strcpy(b->token,"STMTS");
+                    b=ProgramNode((yyvsp[-1].node),b);
+                    b=ProgramNode((yyvsp[0].node),b);
+                    (yyval.node) = b;
+                  }
+#line 1450 "myapp.cpp"
+    break;
+
+  case 13: /* STMTS: LOOP STMTS  */
+#line 203 "Bison_Rule.y"
+                  {
+					tnode *c = CreateTnode();
+                    strcpy(c->token,"STMTS");
+                    c=ProgramNode((yyvsp[-1].node),c);
+                    c=ProgramNode((yyvsp[0].node),c);
+                    (yyval.node) = c;
+                  }
+#line 1462 "myapp.cpp"
+    break;
+
+  case 14: /* STMTS: %empty  */
+#line 210 "Bison_Rule.y"
+                 { tnode *d = CreateTnode();
+                    strcpy(d->token,"STMTS");
+					d->isshow =0;
+                    (yyval.node) = d;
+                 }
+#line 1472 "myapp.cpp"
+    break;
+
+  case 15: /* STMT: STMT_DECLARE  */
+#line 216 "Bison_Rule.y"
+                  {
+					tnode *a = CreateTnode();
+                    strcpy(a->token,"STMT");
+                    a=ProgramNode((yyvsp[0].node),a);
+                    (yyval.node) = a;
+                  }
+#line 1483 "myapp.cpp"
+    break;
+
+  case 16: /* STMT: STMT_ASSIGN  */
+#line 223 "Bison_Rule.y"
+                  {
+					tnode *b = CreateTnode();
+                    strcpy(b->token,"STMT");
+                    b=ProgramNode((yyvsp[0].node),b);
+                    (yyval.node) = b;
+                  }
+#line 1494 "myapp.cpp"
+    break;
+
+  case 17: /* STMT: STMT_RETURN  */
+#line 230 "Bison_Rule.y"
+                  { tnode *c = CreateTnode();
+                    strcpy(c->token,"STMT");
+                    c=ProgramNode((yyvsp[0].node),c);
+                    (yyval.node) = c;
+                  }
+#line 1504 "myapp.cpp"
+    break;
+
+  case 18: /* STMT: CALL  */
+#line 236 "Bison_Rule.y"
+                  {
+					tnode *d = CreateTnode();
+                    strcpy(d->token,"STMT");
+                    d=ProgramNode((yyvsp[0].node),d);
+                    (yyval.node) = d;
+                  }
+#line 1515 "myapp.cpp"
+    break;
+
+  case 19: /* STMT: EXP  */
+#line 243 "Bison_Rule.y"
+                  {
+					tnode *e = CreateTnode();
+                    strcpy(e->token,"STMT");
+                    e=ProgramNode((yyvsp[0].node),e);
+                    (yyval.node) = e;
+                  }
+#line 1526 "myapp.cpp"
+    break;
+
+  case 20: /* STMT: PRINTFUNC  */
+#line 250 "Bison_Rule.y"
+                  {
+					tnode *f = CreateTnode();
+                    strcpy(f->token,"STMT");
+                    f=ProgramNode((yyvsp[0].node),f);
+                    (yyval.node) = f;
+                  }
+#line 1537 "myapp.cpp"
+    break;
+
+  case 21: /* STMT: %empty  */
+#line 256 "Bison_Rule.y"
+                  {
+					tnode *g = CreateTnode();
+                    strcpy(g->token,"STMT");
+					g->isshow =0;
+                    (yyval.node) = g;
+                  }
+#line 1548 "myapp.cpp"
+    break;
+
+  case 22: /* PRINTFUNC: TOKEN_PRFUNC TOKEN_LEFTPAREN EXP TOKEN_RIGHTPAREN  */
+#line 263 "Bison_Rule.y"
+                  {
+					tnode *a = CreateTnode();
+                    strcpy(a->token,"PRINTFUNC");
+                    a=ProgramNode((yyvsp[-3].string),"TOKEN_PRFUNC",a);
+                    a=ProgramNode((yyvsp[-2].string),"TOKEN_LEFTPAREN",a);
+                    a=ProgramNode((yyvsp[-1].node),a);
+                    a=ProgramNode((yyvsp[0].string),"TOKEN_RIGHTPAREN",a);
+                    (yyval.node) = a;
+
+
+                  }
+#line 1564 "myapp.cpp"
+    break;
+
+  case 23: /* TYPE: TOKEN_VOIDTYPE  */
+#line 275 "Bison_Rule.y"
+                  {
+					tnode *a = CreateTnode();
+                    strcpy(a->token,"TYPE");
+                    a=ProgramNode((yyvsp[0].string),"TOKEN_VOIDTYPE",a);
+                    strcpy(a->token2,"void");
+                    (yyval.node) = a;
+                  }
+#line 1576 "myapp.cpp"
+    break;
+
+  case 24: /* TYPE: TOKEN_INTTYPE  */
+#line 283 "Bison_Rule.y"
+                  { tnode *b = CreateTnode();
+                    strcpy(b->token,"TYPE");
+                    b=ProgramNode((yyvsp[0].string),"TOKEN_INTTYPE",b);
+                    strcpy(b->token2,"int");
+                    (yyval.node) = b;
+                  }
+#line 1587 "myapp.cpp"
+    break;
+
+  case 25: /* TYPE: TOKEN_DOUBLETYPE  */
+#line 290 "Bison_Rule.y"
+                  { tnode *c = CreateTnode();
+                    strcpy(c->token,"TYPE");
+                    c=ProgramNode((yyvsp[0].string),"TOKEN_DOUBLETYPE",c);
+                    strcpy(c->token2,"double");
+                    (yyval.node) = c;
+                  }
+#line 1598 "myapp.cpp"
+    break;
+
+  case 26: /* TYPE: TOKEN_FLOATTYPE  */
+#line 297 "Bison_Rule.y"
+                  { tnode *d = CreateTnode();
+                    strcpy(d->token,"TYPE");
+                    d=ProgramNode((yyvsp[0].string),"TOKEN_FLOATTYPE",d);
+                    strcpy(d->token2,"float");
+                    (yyval.node) = d;
+                  }
+#line 1609 "myapp.cpp"
+    break;
+
+  case 27: /* TYPE: TOKEN_CHARTYPE  */
+#line 304 "Bison_Rule.y"
+                  { tnode *e = CreateTnode();
+                    strcpy(e->token,"TYPE");
+                    e=ProgramNode((yyvsp[0].string),"TOKEN_CHARTYPE",e);
+                    strcpy(e->token2,"char");
+                    (yyval.node) = e;
+                  }
+#line 1620 "myapp.cpp"
+    break;
+
+  case 28: /* TYPE: TOKEN_STRINGTYPE  */
+#line 311 "Bison_Rule.y"
+                  { tnode *f = CreateTnode();
+                    strcpy(f->token,"TYPE");
+                    f=ProgramNode((yyvsp[0].string),"TOKEN_STRINGTYPE",f);
+                    strcpy(f->token2,"string");
+                    (yyval.node) = f;
+                  }
+#line 1631 "myapp.cpp"
+    break;
+
+  case 29: /* EXP: EXP TOKEN_RELATIONOP EXP  */
+#line 319 "Bison_Rule.y"
+                  {
+					tnode *a = CreateTnode();
+                    strcpy(a->token,"EXP");
+                    a=ProgramNode((yyvsp[-2].node),a);
+                    a=ProgramNode((yyvsp[-1].string),"TOKEN_RELATIONOP",a);
+                    a=ProgramNode((yyvsp[0].node),a);
+                    if(strcmp((yyvsp[-2].node)->token2,(yyvsp[0].node)->token2)!= 0)
+                      yyerror(1);
+                    strcpy(a->token2,(yyvsp[-2].node)->token2);
+                    (yyval.node) = a;
+
+
+                  }
+#line 1649 "myapp.cpp"
+    break;
+
+  case 30: /* EXP: EXP TOKEN_ARITHMATICOP_MINUS EXP  */
+#line 334 "Bison_Rule.y"
+                  {
+					tnode *b = CreateTnode();
+                    strcpy(b->token,"EXP");
+                    b=ProgramNode((yyvsp[-2].node),b);
+                    b=ProgramNode((yyvsp[-1].string),"TOKEN_ARITHMATICOP_MINUS",b);
+                    b=ProgramNode((yyvsp[0].node),b);
+                    if(strcmp((yyvsp[-2].node)->token2,(yyvsp[0].node)->token2) != 0)
+                      yyerror(4);
+                    strcpy(b->token2,(yyvsp[-2].node)->token2);
+                    (yyval.node) = b;
+
+					if (strcmp((yyvsp[-2].node)->token2,"int") == 0)
+						sprintf((yyval.node)->valname2,"%d", atoi((yyvsp[-2].node)->valname2) - atoi((yyvsp[0].node)->valname2));
+					else
+					sprintf((yyval.node)->valname2,"%f", atof((yyvsp[-2].node)->valname2) - atof((yyvsp[0].node)->valname2));
+
+					countFort++;
+                  }
+#line 1672 "myapp.cpp"
+    break;
+
+  case 31: /* EXP: EXP TOKEN_ARITHMATICOP_DIV EXP  */
+#line 353 "Bison_Rule.y"
+                  {
+					tnode *c = CreateTnode();
+                    strcpy(c->token,"EXP");
+                    c=ProgramNode((yyvsp[-2].node),c);
+                    c=ProgramNode((yyvsp[-1].string),"TOKEN_ARITHMATICOP_DIV",c);
+                    c=ProgramNode((yyvsp[0].node),c);
+                    if(strcmp((yyvsp[-2].node)->token2,(yyvsp[0].node)->token2) != 0)
+                      yyerror(4);
+                    strcpy(c->token2,(yyvsp[-2].node)->token2);
+                    (yyval.node) = c;
+
+					if (strcmp((yyvsp[-2].node)->token2,"int") == 0)
+						sprintf((yyval.node)->valname2,"%d", atoi((yyvsp[-2].node)->valname2) / atoi((yyvsp[0].node)->valname2));
+					else
+					sprintf((yyval.node)->valname2,"%f", atof((yyvsp[-2].node)->valname2) / atof((yyvsp[0].node)->valname2));
+
+
+					countFort++;
+                  }
+#line 1696 "myapp.cpp"
+    break;
+
+  case 32: /* EXP: EXP TOKEN_ARITHMATICOP_PLUS EXP  */
+#line 375 "Bison_Rule.y"
+                  {
+					tnode *b = CreateTnode();
+                    strcpy(b->token,"EXP");
+                    b=ProgramNode((yyvsp[-2].node),b);
+                    b=ProgramNode((yyvsp[-1].string),"TOKEN_ARITHMATICOP_PLUS",b);
+                    b=ProgramNode((yyvsp[0].node),b);
+                    if(strcmp((yyvsp[-2].node)->token2,(yyvsp[0].node)->token2) != 0)
+                      yyerror(4);
+                    strcpy(b->token2,(yyvsp[-2].node)->token2);
+                    (yyval.node) = b;
+
+					if (strcmp((yyvsp[-2].node)->token2,"int") == 0)
+						sprintf((yyval.node)->valname2,"%d", atoi((yyvsp[-2].node)->valname2) + atoi((yyvsp[0].node)->valname2));
+					else
+					sprintf((yyval.node)->valname2,"%f", atof((yyvsp[-2].node)->valname2) + atof((yyvsp[0].node)->valname2));
+
+
+
+					countFort++;
+
+                  }
+#line 1722 "myapp.cpp"
+    break;
+
+  case 33: /* EXP: EXP TOKEN_ARITHMATICOP_MULT EXP  */
+#line 397 "Bison_Rule.y"
+                  {
+					tnode *c = CreateTnode();
+                    strcpy(c->token,"EXP");
+                    c=ProgramNode((yyvsp[-2].node),c);
+                    c=ProgramNode((yyvsp[-1].string),"TOKEN_ARITHMATICOP_MULT",c);
+                    c=ProgramNode((yyvsp[0].node),c);
+                    if(strcmp((yyvsp[-2].node)->token2,(yyvsp[0].node)->token2) != 0)
+                      yyerror(4);
+                    strcpy(c->token2,(yyvsp[-2].node)->token2);
+                    (yyval.node) = c;
+
+					if (strcmp((yyvsp[-2].node)->token2,"int") == 0)
+						sprintf((yyval.node)->valname2,"%d", atoi((yyvsp[-2].node)->valname2) * atoi((yyvsp[0].node)->valname2));
+					else
+					sprintf((yyval.node)->valname2,"%f", atof((yyvsp[-2].node)->valname2) * atof((yyvsp[0].node)->valname2));
+
+					countFort++;
+                  }
+#line 1745 "myapp.cpp"
+    break;
+
+  case 34: /* EXP: EXP TOKEN_ARITHMATICOP_POW EXP  */
+#line 417 "Bison_Rule.y"
+                  {
+					tnode *d = CreateTnode();
+                    strcpy(d->token,"EXP");
+                    d=ProgramNode((yyvsp[-2].node),d);
+                    d=ProgramNode((yyvsp[-1].string),"TOKEN_ARITHMATICOP_POW",d);
+                    d=ProgramNode((yyvsp[0].node),d);
+                    if(strcmp((yyvsp[-2].node)->token2,(yyvsp[0].node)->token2) != 0)
+					  yyerror(4);
+                    strcpy(d->token2,(yyvsp[-2].node)->token2);
+                    (yyval.node) = d;
+                  }
+#line 1761 "myapp.cpp"
+    break;
+
+  case 35: /* EXP: EXP TOKEN_LOGICOP EXP  */
+#line 429 "Bison_Rule.y"
+                  {
+					tnode *e = CreateTnode();
+                    strcpy(e->token,"EXP");
+                    e=ProgramNode((yyvsp[-2].node),e);
+                    e=ProgramNode((yyvsp[-1].string),"TOKEN_LOGICOP",e);
+                    e=ProgramNode((yyvsp[0].node),e);
+                    if(strcmp((yyvsp[-2].node)->token2,(yyvsp[0].node)->token2) != 0)
+					  yyerror(4);
+                    strcpy(e->token2,(yyvsp[-2].node)->token2);
+                    (yyval.node) = e;
+                  }
+#line 1777 "myapp.cpp"
+    break;
+
+  case 36: /* EXP: EXP TOKEN_BITWISEOP EXP  */
+#line 441 "Bison_Rule.y"
+                  {
+					tnode *f = CreateTnode();
+                    strcpy(f->token,"EXP");
+                    f=ProgramNode((yyvsp[-2].node),f);
+                    f=ProgramNode((yyvsp[-1].string),"TOKEN_BITWISEOP",f);
+                    f=ProgramNode((yyvsp[0].node),f);
+                    if(strcmp((yyvsp[-2].node)->token2,(yyvsp[0].node)->token2) != 0)
+					  yyerror(4);
+                    strcpy(f->token2,(yyvsp[-2].node)->token2);
+                    (yyval.node) = f;
+                  }
+#line 1793 "myapp.cpp"
+    break;
+
+  case 37: /* EXP: TOKEN_ID TOKEN_LB EXP TOKEN_RB  */
+#line 453 "Bison_Rule.y"
+                  {
+					tnode *g = CreateTnode();
+                    strcpy(g->token,"EXP");
+                    g=ProgramNode((yyvsp[-3].string),"TOKEN_ID",g);
+                    g=ProgramNode((yyvsp[-3].string),"TOKEN_LB",g);
+                    g=ProgramNode((yyvsp[-1].node),g);
+                    g=ProgramNode((yyvsp[0].string),"TOKEN_RB",g);
+                    if(strcmp("int",(yyvsp[-1].node)->token2) != 0)
+					  yyerror("array index should be in int form");
+                    if(table[(yyvsp[-3].string)]=="")
+					  yyerror(2,(yyvsp[-3].string));
+                    else
+                      strcpy(g->token2,table[(yyvsp[-3].string)].c_str());
+                    (yyval.node) = g;
+                  }
+#line 1813 "myapp.cpp"
+    break;
+
+  case 38: /* EXP: TOKEN_LOGICOP_NOT EXP  */
+#line 469 "Bison_Rule.y"
+                  {
+					tnode *h = CreateTnode();
+                    strcpy(h->token,"EXP");
+                    h=ProgramNode((yyvsp[-1].string),"TOKEN_LOGICOP_NOT",h);
+                    h=ProgramNode((yyvsp[0].node),h);
+                    if(strcmp((yyvsp[0].node)->token2,"string") == 0)
+					  yyerror("string error");
+                    strcpy(h->token2,(yyvsp[0].node)->token2);
+                    (yyval.node) = h;
+                  }
+#line 1828 "myapp.cpp"
+    break;
+
+  case 39: /* EXP: TOKEN_LEFTPAREN EXP TOKEN_RIGHTPAREN  */
+#line 480 "Bison_Rule.y"
+                  {
+					tnode *k = CreateTnode();
+                    strcpy(k->token,"EXP");
+                    k=ProgramNode((yyvsp[-2].string),"TOKEN_LEFTPAREN",k);
+                    k=ProgramNode((yyvsp[-1].node),k);
+                    k=ProgramNode((yyvsp[0].string),"TOKEN_RIGHTPAREN",k);
+                    strcpy(k->token2,(yyvsp[-1].node)->token2);
+                    (yyval.node) = k;
+                  }
+#line 1842 "myapp.cpp"
+    break;
+
+  case 40: /* EXP: TOKEN_ID  */
+#line 490 "Bison_Rule.y"
+                  {
+					tnode *l = CreateTnode();
+                    strcpy(l->token,"EXP");
+                    l=ProgramNode((yyvsp[0].string),"TOKEN_ID",l);
+                    if(table[(yyvsp[0].string)]=="")
+					  yyerror(2,(yyvsp[0].string));
+                    else
+                      strcpy(l->token2,table[(yyvsp[0].string)].c_str());
+                    (yyval.node) = l;
+					strcpy((yyval.node)->valname2,env[(yyvsp[0].string)].c_str());
+					strcpy((yyval.node)->token3,(yyvsp[0].string));
+                  }
+#line 1859 "myapp.cpp"
+    break;
+
+  case 41: /* EXP: TOKEN_INTCONST  */
+#line 503 "Bison_Rule.y"
+                  { tnode *n = CreateTnode();
+                    strcpy(n->token,"EXP");
+                    n=ProgramNode((yyvsp[0].string),"TOKEN_INTCONST",n);
+                    strcpy(n->token2,"int");
+                    (yyval.node) = n;
+					strcpy((yyval.node)->valname2, (yyvsp[0].string));
+                  }
+#line 1871 "myapp.cpp"
+    break;
+
+  case 42: /* EXP: TOKEN_STRINGCONST  */
+#line 511 "Bison_Rule.y"
+                  {
+					tnode *p = CreateTnode();
+                    strcpy(p->token,"EXP");
+                    p=ProgramNode((yyvsp[0].string),"TOKEN_STRINGCONST",p);
+                    strcpy(p->token2,"string");
+                    (yyval.node) = p;
+					strcpy((yyval.node)->valname2, (yyvsp[0].string));
+
+                  }
+#line 1885 "myapp.cpp"
+    break;
+
+  case 43: /* EXP: TOKEN_CHARCONST  */
+#line 521 "Bison_Rule.y"
+                  {
+					tnode *q = CreateTnode();
+                    strcpy(q->token,"EXP");
+                    q=ProgramNode((yyvsp[0].string),"TOKEN_CHARCONST",q);
+                    strcpy(q->token2,"char");
+                    (yyval.node) = q;
+					strcpy((yyval.node)->valname2, (yyvsp[0].string));
+
+                  }
+#line 1899 "myapp.cpp"
+    break;
+
+  case 44: /* EXP: TOKEN_FLOATCONST  */
+#line 531 "Bison_Rule.y"
+                  { tnode *r = CreateTnode();
+                    strcpy(r->token,"EXP");
+                    r=ProgramNode((yyvsp[0].string),"TOKEN_FLOATCONST",r);
+                    strcpy(r->token2,"float");
+                    (yyval.node) = r;
+					strcpy((yyval.node)->valname2, (yyvsp[0].string));
+
+                  }
+#line 1912 "myapp.cpp"
+    break;
+
+  case 45: /* $@2: %empty  */
+#line 539 "Bison_Rule.y"
+                                            {}
+#line 1918 "myapp.cpp"
+    break;
+
+  case 46: /* $@3: %empty  */
+#line 539 "Bison_Rule.y"
+                                                                   {}
+#line 1924 "myapp.cpp"
+    break;
+
+  case 47: /* $@4: %empty  */
+#line 539 "Bison_Rule.y"
+                                                                                      {}
+#line 1930 "myapp.cpp"
+    break;
+
+  case 48: /* LOOP: TOKEN_LOOP TOKEN_ID $@2 TOKEN_LEFTPAREN EXP $@3 TOKEN_UNTIL EXP $@4 TOKEN_RIGHTPAREN TOKEN_LCB STMTS TOKEN_RCB  */
+#line 540 "Bison_Rule.y"
+                  {
+					tnode *a = CreateTnode();
+                    strcpy(a->token,"LOOP");
+                    a=ProgramNode((yyvsp[-12].string),"TOKEN_LOOP",a);
+                    a=ProgramNode((yyvsp[-11].string),"TOKEN_ID",a);
+                    a=ProgramNode((yyvsp[-9].string),"TOKEN_LEFTPAREN",a);
+                    a=ProgramNode((yyvsp[-8].node),a);
+                    a=ProgramNode((yyvsp[-6].string),"TOKEN_UNTIL",a);
+                    a=ProgramNode((yyvsp[-5].node),a);
+                    a=ProgramNode((yyvsp[-3].string),"TOKEN_RIGHTPAREN",a);
+                    a=ProgramNode((yyvsp[-2].string),"TOKEN_LCB",a);
+                    a=ProgramNode((yyvsp[-1].node),a);
+                    a=ProgramNode((yyvsp[0].string),"TOKEN_RCB",a);
+                    (yyval.node) = a;
+
+
+                    countForLoop++;
+                  }
+#line 1953 "myapp.cpp"
+    break;
+
+  case 49: /* CONDITION: TOKEN_IFCONDITION TOKEN_LEFTPAREN EXP TOKEN_RIGHTPAREN TOKEN_LCB STMTS TOKEN_RCB  */
+#line 560 "Bison_Rule.y"
+                  {
+					tnode *a = CreateTnode();
+                    strcpy(a->token,"CONDITION");
+                    a=ProgramNode((yyvsp[-6].string),"TOKEN_IFCONDITION",a);
+                    a=ProgramNode((yyvsp[-5].string),"TOKEN_LEFTPAREN",a);
+                    a=ProgramNode((yyvsp[-4].node),a);
+                    a=ProgramNode((yyvsp[-3].string),"TOKEN_RIGHTPAREN",a);
+                    a=ProgramNode((yyvsp[-2].string),"TOKEN_LCB",a);
+                    a=ProgramNode((yyvsp[-1].node),a);
+                    a=ProgramNode((yyvsp[0].string),"TOKEN_RCB",a);
+                    (yyval.node) = a;
+                    countForIF++;
+                  }
+#line 1971 "myapp.cpp"
+    break;
+
+  case 50: /* $@5: %empty  */
+#line 573 "Bison_Rule.y"
+                                                                                                             {}
+#line 1977 "myapp.cpp"
+    break;
+
+  case 51: /* CONDITION: TOKEN_IFCONDITION TOKEN_LEFTPAREN EXP TOKEN_RIGHTPAREN TOKEN_LCB STMTS TOKEN_RCB $@5 ELSECON  */
+#line 574 "Bison_Rule.y"
+                  {
+				  tnode *b = CreateTnode();
+                    strcpy(b->token,"CONDITION");
+                    b=ProgramNode((yyvsp[-8].string),"TOKEN_IFCONDITION",b);
+                    b=ProgramNode((yyvsp[-7].string),"TOKEN_LEFTPAREN",b);
+                    b=ProgramNode((yyvsp[-6].node),b);
+                    b=ProgramNode((yyvsp[-5].string),"TOKEN_RIGHTPAREN",b);
+                    b=ProgramNode((yyvsp[-4].string),"TOKEN_LCB",b);
+                    b=ProgramNode((yyvsp[-3].node),b);
+                    b=ProgramNode((yyvsp[-2].string),"TOKEN_RCB",b);
+                    b=ProgramNode((yyvsp[0].node),b);
+                    (yyval.node) = b;
+                  }
+#line 1995 "myapp.cpp"
+    break;
+
+  case 52: /* ELSECON: TOKEN_ELSECONDITION TOKEN_LCB STMTS TOKEN_RCB  */
+#line 589 "Bison_Rule.y"
+                  {
+					tnode *a = CreateTnode();
+                    strcpy(a->token,"ELSECON");
+                    a=ProgramNode((yyvsp[-3].string),"TOKEN_ELSECONDITION",a);
+                    a=ProgramNode((yyvsp[-2].string),"TOKEN_LCB",a);
+                    a=ProgramNode((yyvsp[-1].node),a);
+                    a=ProgramNode((yyvsp[0].string),"TOKEN_RCB",a);
+                    (yyval.node) = a;
+                    countForEndIF++;
+
+                  }
+#line 2011 "myapp.cpp"
+    break;
+
+  case 53: /* STMT_RETURN: TOKEN_RETURN EXP  */
+#line 602 "Bison_Rule.y"
+                  {
+					tnode *a = CreateTnode();
+                    strcpy(a->token,"STMT_RETURN");
+                    a=ProgramNode((yyvsp[-1].string),"TOKEN_RETURN",a);
+                    a=ProgramNode((yyvsp[0].node),a);
+                    (yyval.node) = a;
+                  }
+#line 2023 "myapp.cpp"
+    break;
+
+  case 54: /* $@6: %empty  */
+#line 610 "Bison_Rule.y"
+                                          {strcpy(typecheck,(yyvsp[-2].node)->token2);}
+#line 2029 "myapp.cpp"
+    break;
+
+  case 55: /* STMT_DECLARE: TYPE TOKEN_ID ARRAY_VAR $@6 IDS  */
+#line 611 "Bison_Rule.y"
+                  {
+					tnode *a = CreateTnode();
+                    strcpy(a->token,"STMT_DECLARE");
+                    a=ProgramNode((yyvsp[-4].node),a);
+                    a=ProgramNode((yyvsp[-3].string),"TOKEN_ID",a);
+                    a=ProgramNode((yyvsp[-2].node),a);
+                    a=ProgramNode((yyvsp[0].node),a);
+					if(table[(yyvsp[-3].string)]!="")
+					  yyerror(3,(yyvsp[-3].string));
+
+                    table[(yyvsp[-3].string)]=(yyvsp[-4].node)->token2;
+                    (yyval.node) = a;
+
+					if (strcmp((yyvsp[0].node)->valname2,"")==0)
+						env[(yyvsp[-3].string)]="0"; //asm
+					else
+					env[(yyvsp[-3].string)]=(yyvsp[0].node)->valname2; //asm
+
+					variables[(yyvsp[-3].string)]= "$s" + std::to_string(countForS);
+					countForS++;
+
+					if (strcmp((yyvsp[-2].node)->valname2,"")!=0 || strcmp((yyvsp[-2].node)->token3,"")!=0)
+					{
+
+					countFora++;
+					countForv++;
+					}
+
+                  }
+#line 2063 "myapp.cpp"
+    break;
+
+  case 56: /* ARRAY_VAR: TOKEN_LB EXP TOKEN_RB  */
+#line 642 "Bison_Rule.y"
+                  {
+					tnode *a = CreateTnode();
+                    strcpy(a->token,"ARRAY_VAR");
+                    a=ProgramNode((yyvsp[-2].string),"TOKEN_LB",a);
+                    a=ProgramNode((yyvsp[-1].node),a);
+                    a=ProgramNode((yyvsp[0].string),"TOKEN_RB",a);
+                    (yyval.node) = a;
+					if (variables[(yyvsp[-1].node)->token3]=="")
+					strcpy((yyval.node)->valname2, (yyvsp[-1].node)->valname2);
+					else
+					strcpy((yyval.node)->token3, (yyvsp[-1].node)->token3);
+
+                  }
+#line 2081 "myapp.cpp"
+    break;
+
+  case 57: /* ARRAY_VAR: TOKEN_LB TOKEN_RB  */
+#line 656 "Bison_Rule.y"
+                  {
+					tnode *b = CreateTnode();
+                    strcpy(b->token,"ARRAY_VAR");
+                    b=ProgramNode((yyvsp[-1].string),"TOKEN_LB",b);
+                    b=ProgramNode((yyvsp[0].string),"TOKEN_RB",b);
+                    (yyval.node) = b;
+                  }
+#line 2093 "myapp.cpp"
+    break;
+
+  case 58: /* ARRAY_VAR: %empty  */
+#line 663 "Bison_Rule.y"
+                   {  tnode *c = CreateTnode();
+                    strcpy(c->token,"ARRAY_VAR");
+					c->isshow =0;
+                    (yyval.node) = c;
+					strcpy((yyval.node)->valname2 , "");
+					strcpy((yyval.node)->token3 , "");
+                  }
+#line 2105 "myapp.cpp"
+    break;
+
+  case 59: /* IDS: STMT_ASSIGN IDS  */
+#line 672 "Bison_Rule.y"
+                  {
+					tnode *a = CreateTnode();
+                    strcpy(a->token,"IDS");
+                    a=ProgramNode((yyvsp[-1].node),a);
+                    a=ProgramNode((yyvsp[0].node),a);
+                    (yyval.node) = a;
+					strcpy((yyval.node)->valname2,(yyvsp[-1].node)->valname2);
+                  }
+#line 2118 "myapp.cpp"
+    break;
+
+  case 60: /* IDS: TOKEN_COMMA TOKEN_ID ARRAY_VAR IDS  */
+#line 681 "Bison_Rule.y"
+                  {
+					tnode *b = CreateTnode();
+                    strcpy(b->token,"IDS");
+                    b=ProgramNode((yyvsp[-3].string),"TOKEN_COMMA",b);
+                    b=ProgramNode((yyvsp[-2].string),"TOKEN_ID",b);
+                    b=ProgramNode((yyvsp[-1].node),b);
+                    b=ProgramNode((yyvsp[0].node),b);
+                    if(table[(yyvsp[-2].string)]!= "")
+					  yyerror(3,(yyvsp[-2].string));
+                    table[(yyvsp[-2].string)]=typecheck;
+                    (yyval.node) = b;
+                  }
+#line 2135 "myapp.cpp"
+    break;
+
+  case 61: /* IDS: %empty  */
+#line 693 "Bison_Rule.y"
+                   {
+					tnode *c = CreateTnode();
+                    strcpy(c->token,"IDS");
+					c->isshow =0;
+                    (yyval.node) = c;
+                  }
+#line 2146 "myapp.cpp"
+    break;
+
+  case 62: /* CALL: TOKEN_ID TOKEN_LEFTPAREN ARGS TOKEN_RIGHTPAREN  */
+#line 701 "Bison_Rule.y"
+                  {
+					tnode *a = CreateTnode();
+                    strcpy(a->token,"CALL");
+                    a=ProgramNode((yyvsp[-3].string),"TOKEN_ID",a);
+                    a=ProgramNode((yyvsp[-2].string),"TOKEN_LEFTPAREN",a);
+                    a=ProgramNode((yyvsp[-1].node),a);
+                    a=ProgramNode((yyvsp[0].string),"TOKEN_RIGHTPAREN",a);
+                    (yyval.node) = a;
+                  }
+#line 2160 "myapp.cpp"
+    break;
+
+  case 63: /* ARGS: EXP ARGS  */
+#line 712 "Bison_Rule.y"
+                  {
+					tnode *a = CreateTnode();
+                    strcpy(a->token,"ARGS");
+                    a=ProgramNode((yyvsp[-1].node),a);
+                    a=ProgramNode((yyvsp[0].node),a);
+                    (yyval.node) = a;
+                  }
+#line 2172 "myapp.cpp"
+    break;
+
+  case 64: /* ARGS: TOKEN_COMMA EXP ARGS  */
+#line 720 "Bison_Rule.y"
+                  {
+					tnode *b = CreateTnode();
+                    strcpy(b->token,"ARGS");
+                    b=ProgramNode((yyvsp[-2].string),"TOKEN_COMMA",b);
+                    b=ProgramNode((yyvsp[-1].node),b);
+                    b=ProgramNode((yyvsp[0].node),b);
+                    (yyval.node) = b;
+                  }
+#line 2185 "myapp.cpp"
+    break;
+
+  case 65: /* ARGS: %empty  */
+#line 728 "Bison_Rule.y"
+                   { tnode *c = CreateTnode();
+                    strcpy(c->token,"ARGS");
+					c->isshow =0;
+                    (yyval.node) = c;
+                  }
+#line 2195 "myapp.cpp"
+    break;
+
+  case 66: /* STMT_ASSIGN: TOKEN_ID ARRAY_VAR TOKEN_ASSIGNOP EXP  */
+#line 735 "Bison_Rule.y"
+                  {
+					tnode *a = CreateTnode();
+                    strcpy(a->token,"STMT_ASSIGN");
+                    a=ProgramNode((yyvsp[-3].string),"TOKEN_ID",a);
+                    a=ProgramNode((yyvsp[-2].node),a);
+                    a=ProgramNode((yyvsp[-1].string),"TOKEN_ASSIGNOP",a);
+                    a=ProgramNode((yyvsp[0].node),a);
+                    if(table[(yyvsp[-3].string)] == "")
+                      yyerror(2,(yyvsp[-3].string));
+                    else if(strcmp(table[(yyvsp[-3].string)].c_str(),(yyvsp[0].node)->token2) != 0)
+                      yyerror(1);
+                    (yyval.node) = a;
+
+
+					if (strcmp((yyvsp[-2].node)->valname2,"")!=0 || strcmp((yyvsp[-2].node)->token3,"")!=0)
+
+						{
+
+
+						if (strcmp((yyvsp[-2].node)->token3,"")!=0 )
+							{
+							// cout<< "TODO" <<endl;
+
+							}
+						else
+							{
+							countFort++;
+
+							if (strcmp((yyvsp[0].node)->token3,"")==0)
+							countFort--;
+							}
+						}
+					else
+						{
+					env[(yyvsp[-3].string)]=(yyvsp[0].node)->valname2;
+				    countFort --;
+						}
+
+                  }
+#line 2239 "myapp.cpp"
+    break;
+
+  case 67: /* STMT_ASSIGN: TOKEN_ASSIGNOP EXP  */
+#line 775 "Bison_Rule.y"
+                  {
+					tnode *b = CreateTnode();
+                    strcpy(b->token,"STMT_ASSIGN");
+                    b=ProgramNode((yyvsp[-1].string),"TOKEN_ASSIGNOP",b);
+                    b=ProgramNode((yyvsp[0].node),b);
+                    if(strcmp(typecheck,(yyvsp[0].node)->token2) != 0)
+                      yyerror(1);
+                    (yyval.node) = b;
+					strcpy((yyval.node)->valname2,(yyvsp[0].node)->valname2);
+                  }
+#line 2254 "myapp.cpp"
+    break;
+
+  case 68: /* STMT_ASSIGN: TOKEN_ASSIGNOP CALL  */
+#line 787 "Bison_Rule.y"
+                  {
+              tnode *c = CreateTnode();
+              strcpy(c->token, "STMT_ASSIGN");
+              ProgramNode((yyvsp[-1].string), "TOKEN_ASSIGNOP", c);
+              ProgramNode((yyvsp[0].node), c);
+              (yyval.node) = c;
+                  }
+#line 2266 "myapp.cpp"
+    break;
+
+  case 69: /* STMT_ASSIGN: TOKEN_ID ARRAY_VAR TOKEN_ASSIGNOP CALL  */
+#line 795 "Bison_Rule.y"
+                                                {
+                tnode *d = CreateTnode();
+    					  strcpy(d->token, "STMT_ASSIGN");
+    					  ProgramNode((yyvsp[-3].string), "TOKEN_ID",d);
+    					  ProgramNode((yyvsp[-2].node),d);
+    					  ProgramNode((yyvsp[-1].string), "TOKEN_ASSIGNOP",d);
+    					  ProgramNode((yyvsp[0].node),d);
+    					  (yyval.node) = d;
+          					}
+#line 2280 "myapp.cpp"
+    break;
+
+
+#line 2284 "myapp.cpp"
+
+      default: break;
+    }
+  /* User semantic actions sometimes alter yychar, and that requires
+     that yytoken be updated with the new translation.  We take the
+     approach of translating immediately before every use of yytoken.
+     One alternative is translating here after every semantic action,
+     but that translation would be missed if the semantic action invokes
+     YYABORT, YYACCEPT, or YYERROR immediately after altering yychar or
+     if it invokes YYBACKUP.  In the case of YYABORT or YYACCEPT, an
+     incorrect destructor might then be invoked immediately.  In the
+     case of YYERROR or YYBACKUP, subsequent parser actions might lead
+     to an incorrect destructor call or verbose syntax error message
+     before the lookahead is translated.  */
+  YY_SYMBOL_PRINT ("-> $$ =", YY_CAST (yysymbol_kind_t, yyr1[yyn]), &yyval, &yyloc);
+
+  YYPOPSTACK (yylen);
+  yylen = 0;
+
+  *++yyvsp = yyval;
+
+  /* Now 'shift' the result of the reduction.  Determine what state
+     that goes to, based on the state we popped back to and the rule
+     number reduced by.  */
+  {
+    const int yylhs = yyr1[yyn] - YYNTOKENS;
+    const int yyi = yypgoto[yylhs] + *yyssp;
+    yystate = (0 <= yyi && yyi <= YYLAST && yycheck[yyi] == *yyssp
+               ? yytable[yyi]
+               : yydefgoto[yylhs]);
+  }
+
+  goto yynewstate;
+
+
+/*--------------------------------------.
+| yyerrlab -- here on detecting error.  |
+`--------------------------------------*/
+yyerrlab:
+  /* Make sure we have latest lookahead translation.  See comments at
+     user semantic actions for why this is necessary.  */
+  yytoken = yychar == YYEMPTY ? YYSYMBOL_YYEMPTY : YYTRANSLATE (yychar);
+  /* If not already recovering from an error, report this error.  */
+  if (!yyerrstatus)
+    {
+      ++yynerrs;
+      yyerror (YY_("syntax error"));
+    }
+
+  if (yyerrstatus == 3)
+    {
+      /* If just tried and failed to reuse lookahead token after an
+         error, discard it.  */
+
+      if (yychar <= YYEOF)
+        {
+          /* Return failure if at end of input.  */
+          if (yychar == YYEOF)
+            YYABORT;
+        }
+      else
+        {
+          yydestruct ("Error: discarding",
+                      yytoken, &yylval);
+          yychar = YYEMPTY;
+        }
+    }
+
+  /* Else will try to reuse lookahead token after shifting the error
+     token.  */
+  goto yyerrlab1;
+
+
+/*---------------------------------------------------.
+| yyerrorlab -- error raised explicitly by YYERROR.  |
+`---------------------------------------------------*/
+yyerrorlab:
+  /* Pacify compilers when the user code never invokes YYERROR and the
+     label yyerrorlab therefore never appears in user code.  */
+  if (0)
+    YYERROR;
+  ++yynerrs;
+
+  /* Do not reclaim the symbols of the rule whose action triggered
+     this YYERROR.  */
+  YYPOPSTACK (yylen);
+  yylen = 0;
+  YY_STACK_PRINT (yyss, yyssp);
+  yystate = *yyssp;
+  goto yyerrlab1;
+
+
+/*-------------------------------------------------------------.
+| yyerrlab1 -- common code for both syntax error and YYERROR.  |
+`-------------------------------------------------------------*/
+yyerrlab1:
+  yyerrstatus = 3;      /* Each real token shifted decrements this.  */
+
+  /* Pop stack until we find a state that shifts the error token.  */
+  for (;;)
+    {
+      yyn = yypact[yystate];
+      if (!yypact_value_is_default (yyn))
+        {
+          yyn += YYSYMBOL_YYerror;
+          if (0 <= yyn && yyn <= YYLAST && yycheck[yyn] == YYSYMBOL_YYerror)
+            {
+              yyn = yytable[yyn];
+              if (0 < yyn)
+                break;
+            }
+        }
+
+      /* Pop the current state because it cannot handle the error token.  */
+      if (yyssp == yyss)
+        YYABORT;
+
+
+      yydestruct ("Error: popping",
+                  YY_ACCESSING_SYMBOL (yystate), yyvsp);
+      YYPOPSTACK (1);
+      yystate = *yyssp;
+      YY_STACK_PRINT (yyss, yyssp);
+    }
+
+  YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
+  *++yyvsp = yylval;
+  YY_IGNORE_MAYBE_UNINITIALIZED_END
+
+
+  /* Shift the error token.  */
+  YY_SYMBOL_PRINT ("Shifting", YY_ACCESSING_SYMBOL (yyn), yyvsp, yylsp);
+
+  yystate = yyn;
+  goto yynewstate;
+
+
+/*-------------------------------------.
+| yyacceptlab -- YYACCEPT comes here.  |
+`-------------------------------------*/
+yyacceptlab:
+  yyresult = 0;
+  goto yyreturnlab;
+
+
+/*-----------------------------------.
+| yyabortlab -- YYABORT comes here.  |
+`-----------------------------------*/
+yyabortlab:
+  yyresult = 1;
+  goto yyreturnlab;
+
+
+/*-----------------------------------------------------------.
+| yyexhaustedlab -- YYNOMEM (memory exhaustion) comes here.  |
+`-----------------------------------------------------------*/
+yyexhaustedlab:
+  yyerror (YY_("memory exhausted"));
+  yyresult = 2;
+  goto yyreturnlab;
+
+
+/*----------------------------------------------------------.
+| yyreturnlab -- parsing is finished, clean up and return.  |
+`----------------------------------------------------------*/
+yyreturnlab:
+  if (yychar != YYEMPTY)
+    {
+      /* Make sure we have latest lookahead translation.  See comments at
+         user semantic actions for why this is necessary.  */
+      yytoken = YYTRANSLATE (yychar);
+      yydestruct ("Cleanup: discarding lookahead",
+                  yytoken, &yylval);
+    }
+  /* Do not reclaim the symbols of the rule whose action triggered
+     this YYABORT or YYACCEPT.  */
+  YYPOPSTACK (yylen);
+  YY_STACK_PRINT (yyss, yyssp);
+  while (yyssp != yyss)
+    {
+      yydestruct ("Cleanup: popping",
+                  YY_ACCESSING_SYMBOL (+*yyssp), yyvsp);
+      YYPOPSTACK (1);
+    }
+#ifndef yyoverflow
+  if (yyss != yyssa)
+    YYSTACK_FREE (yyss);
+#endif
+
+  return yyresult;
+}
+
+#line 804 "Bison_Rule.y"
+
+
+
+int main(int argc,char **argv)
+{
+
+	if(argc<3){
+       cout<< "number of args is not sufficient, another is required" << endl;
+	  return 0;
+	  }
+
+	if (argv[2][0]=='0')
+	{
+		printByTokenName=0;
+		printTepsilon=1;
+	}
+
+	else if (argv[2][0]=='1')
+	{
+		printByTokenName=1;
+		printTepsilon=1;
+	}
+
+	else if (argv[2][0]=='2')
+	{
+		printByTokenName=0;
+		printTepsilon=0;
+	}
+	else if (argv[2][0]=='3')
+	{
+		printByTokenName=1;
+		printTepsilon=0;
+	}
+	else
+	{
+		printByTokenName=0;
+		printTepsilon=1;
+	}
+
+
+	FILE *pFile = fopen(argv[1],"r");
+
+	if (pFile == NULL)
+	perror ("Error opening file");
+	else
+	{
+	yyin = pFile;
+	yyparse();
+	if(NTnode != NULL)
+		printtree(NTnode);
+	}
+   cout<< output <<endl;
+  return 0;
+}
+
+void yyerror(const char* m)
+{
+	 cout<<"line: "<<line<<", column: "<<stringNumber<<", error: " << m <<endl;
+}
+
+void yyerror(int m)
+{
+  if (m==1)
+	 cout<<"line: "<<line<<", column: "<<stringNumber<<", error: "<< "assign operation" <<endl;
+  else if (m==4)
+	 cout<<"line: "<<line<<", column: "<<stringNumber<<", error: "<< "arithmetic operation" <<endl;
+}
+
+void yyerror(int m, string m1)
+{
+  if(m==2)
+  	 cout<<"line: "<<line<<", column: "<<stringNumber<<", error: "<< "variable " << m1 << " is not defined" <<endl;
+  else if(m==3)
+  	 cout<<"line: "<<line<<", column: "<<stringNumber<<", error: "<< "variable " << m1 << " exists before" <<endl;
+}
+
+void printtree(tnode *node)
+{
+  tnode *itr;
+
+	for(int i=1;i<count1;i++)
+	  cout<<"\t";
+
+	if(count1)
+	  cout<<"\\";
+	if((printByTokenName==1) && (node->lastchild))
+	{
+	 cout<< node->token << "\n";
+	 output.append(node->token);
+	 output.append(" ");
+	}
+	else if((printByTokenName==0) && (node->lastchild))
+	{
+	cout<< node->token << "-> " << node->valname << endl;
+	output.append(node->valname);
+	output.append(" ");
+	}
+	else
+	{
+	cout<< node->token << "\n";
+	output.append(node->token);
+	output.append(" ");
+	count1++;
+	}
+
+  for(itr = node->child; itr != NULL; itr = itr->ptr)
+    if(printTepsilon==1)
+	  printtree(itr);
+	else if(printTepsilon==0)
+	  if (itr->isshow==1)
+		{
+		  printtree(itr);
+		}
+
+  if(node->lastchild==0)
+	count1--;
+}
+
+tnode* CreateTnode()
+{
+ tnode *t = new struct tnode();
+ t->ptr = NULL;
+ t->child = NULL;
+ t->lastchild = 0;
+ t->isshow=1;
+
+ strcpy(t->token, "");
+ strcpy(t->token2, "");
+ strcpy(t->token3, "");
+
+ strcpy(t->valname, "");
+ strcpy(t->valname2, "");
+ strcpy(t->valname3, "");
+ return(t);
+}
+
+
+tnode* ProgramNode(tnode* push, tnode* t)
+{
+	if(t->child == NULL)
+		t->child = push;
+	else
+	{
+		tnode *itr;
+		for(itr = t->child; itr->ptr != NULL; itr = itr->ptr);
+		itr->ptr = push;
+	}
+	return(t);
+}
+
+
+tnode* ProgramNode(string valname, string token, tnode* t)
+{
+	tnode *push = CreateTnode();
+	push->lastchild = 1;
+	strcpy(push->valname, valname.c_str());
+	strcpy(push->token, token.c_str());
+	t = ProgramNode(push,t);
+	return (t);
+}
