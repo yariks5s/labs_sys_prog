@@ -1321,10 +1321,10 @@ yyreduce:
 					tnode *a = CreateTnode();
                     strcpy(a->token,"GLOBAL_DECLARE");
                     a=ProgramNode((yyvsp[-5].node),a);
-                    a=ProgramNode((yyvsp[-4].string),"TOKEN_ID",a);
-                    a=ProgramNode((yyvsp[-3].string),"TOKEN_ASSIGNOP",a);
+                    a=ProgramNode((yyvsp[-4].string),"Токен ID",a);
+                    a=ProgramNode((yyvsp[-3].string),"Токен =",a);
                     a=ProgramNode((yyvsp[-2].node),a);
-                    a=ProgramNode((yyvsp[-1].string),"TOKEN_SEMICOLON",a);
+                    a=ProgramNode((yyvsp[-1].string),"Токен ;",a);
                     a=ProgramNode((yyvsp[0].node),a);
 
                     if(table[(yyvsp[-4].string)]!="")
@@ -1341,7 +1341,7 @@ yyreduce:
 #line 128 "Bison_Rule.y"
                   {
 					tnode *b = CreateTnode();
-                    strcpy(b->token,"GLOBAL_DECLARE");
+                    strcpy(b->token,"Глобальне оголошення");
                     b=ProgramNode((yyvsp[0].node),b);
                     (yyval.node) = b;
                   }
@@ -1360,13 +1360,13 @@ yyreduce:
 					tnode *a = CreateTnode();
 					strcpy(a->token,"PGM");
 					a=ProgramNode((yyvsp[-9].node),a);
-					a=ProgramNode((yyvsp[-8].string),"TOKEN_ID",a);
-					a=ProgramNode((yyvsp[-6].string),"TOKEN_LEFTPAREN",a);
+					a=ProgramNode((yyvsp[-8].string),"Токен ID",a);
+					a=ProgramNode((yyvsp[-6].string),"Токен (",a);
 					a=ProgramNode((yyvsp[-5].node),a);
-					a=ProgramNode((yyvsp[-4].string),"TOKEN_RIGHTPAREN",a);
-					a=ProgramNode((yyvsp[-3].string),"TOKEN_LCB",a);
+					a=ProgramNode((yyvsp[-4].string),"Токен )",a);
+					a=ProgramNode((yyvsp[-3].string),"Токен {",a);
 					a=ProgramNode((yyvsp[-2].node),a);
-					a=ProgramNode((yyvsp[-1].string),"TOKEN_RCB",a);
+					a=ProgramNode((yyvsp[-1].string),"Токен }",a);
 					(yyval.node) = a;
 
 
@@ -1391,9 +1391,9 @@ yyreduce:
 				  tnode *a = CreateTnode();
                     strcpy(a->token,"F_ARG");
                     a=ProgramNode((yyvsp[-4].node),a);
-                    a=ProgramNode((yyvsp[-3].string),"TOKEN_ID",a);
+                    a=ProgramNode((yyvsp[-3].string),"Токен ID",a);
                     a=ProgramNode((yyvsp[-2].node),a);
-                    a=ProgramNode((yyvsp[-1].string),"TOKEN_COMMA",a);
+                    a=ProgramNode((yyvsp[-1].string),"Токен ,",a);
                     a=ProgramNode((yyvsp[0].node),a);
                     table[(yyvsp[-3].string)]=(yyvsp[-4].node)->token2;
                     (yyval.node) = a;
@@ -1406,7 +1406,7 @@ yyreduce:
                   { tnode *b = CreateTnode();
                     strcpy(b->token,"F_ARG");
                     b=ProgramNode((yyvsp[-2].node),b);
-                    b=ProgramNode((yyvsp[-1].string),"TOKEN_ID",b);
+                    b=ProgramNode((yyvsp[-1].string),"Токен ID",b);
                     b=ProgramNode((yyvsp[0].node),b);
                     table[(yyvsp[-1].string)]=(yyvsp[-2].node)->token2;
                     (yyval.node) = b;
@@ -1430,7 +1430,7 @@ yyreduce:
 					tnode *a = CreateTnode();
                     strcpy(a->token,"STMTS");
                     a=ProgramNode((yyvsp[-2].node),a);
-                    a=ProgramNode((yyvsp[-1].string),"TOKEN_SEMICOLON",a);
+                    a=ProgramNode((yyvsp[-1].string),"Токен ;",a);
                     a=ProgramNode((yyvsp[0].node),a);
                     (yyval.node) = a;
                   }
@@ -1552,10 +1552,10 @@ yyreduce:
                   {
 					tnode *a = CreateTnode();
                     strcpy(a->token,"PRINTFUNC");
-                    a=ProgramNode((yyvsp[-3].string),"TOKEN_PRFUNC",a);
-                    a=ProgramNode((yyvsp[-2].string),"TOKEN_LEFTPAREN",a);
+                    a=ProgramNode((yyvsp[-3].string),"Токен print",a);
+                    a=ProgramNode((yyvsp[-2].string),"Токен (",a);
                     a=ProgramNode((yyvsp[-1].node),a);
-                    a=ProgramNode((yyvsp[0].string),"TOKEN_RIGHTPAREN",a);
+                    a=ProgramNode((yyvsp[0].string),"Токен )",a);
                     (yyval.node) = a;
 
 
@@ -1568,7 +1568,7 @@ yyreduce:
                   {
 					tnode *a = CreateTnode();
                     strcpy(a->token,"TYPE");
-                    a=ProgramNode((yyvsp[0].string),"TOKEN_VOIDTYPE",a);
+                    a=ProgramNode((yyvsp[0].string),"Токен void",a);
                     strcpy(a->token2,"void");
                     (yyval.node) = a;
                   }
@@ -1579,7 +1579,7 @@ yyreduce:
 #line 283 "Bison_Rule.y"
                   { tnode *b = CreateTnode();
                     strcpy(b->token,"TYPE");
-                    b=ProgramNode((yyvsp[0].string),"TOKEN_INTTYPE",b);
+                    b=ProgramNode((yyvsp[0].string),"Токен int",b);
                     strcpy(b->token2,"int");
                     (yyval.node) = b;
                   }
@@ -1590,7 +1590,7 @@ yyreduce:
 #line 290 "Bison_Rule.y"
                   { tnode *c = CreateTnode();
                     strcpy(c->token,"TYPE");
-                    c=ProgramNode((yyvsp[0].string),"TOKEN_DOUBLETYPE",c);
+                    c=ProgramNode((yyvsp[0].string),"Токен double",c);
                     strcpy(c->token2,"double");
                     (yyval.node) = c;
                   }
@@ -1601,7 +1601,7 @@ yyreduce:
 #line 297 "Bison_Rule.y"
                   { tnode *d = CreateTnode();
                     strcpy(d->token,"TYPE");
-                    d=ProgramNode((yyvsp[0].string),"TOKEN_FLOATTYPE",d);
+                    d=ProgramNode((yyvsp[0].string),"Токен float",d);
                     strcpy(d->token2,"float");
                     (yyval.node) = d;
                   }
@@ -1612,7 +1612,7 @@ yyreduce:
 #line 304 "Bison_Rule.y"
                   { tnode *e = CreateTnode();
                     strcpy(e->token,"TYPE");
-                    e=ProgramNode((yyvsp[0].string),"TOKEN_CHARTYPE",e);
+                    e=ProgramNode((yyvsp[0].string),"Токен float",e);
                     strcpy(e->token2,"char");
                     (yyval.node) = e;
                   }
@@ -1623,7 +1623,7 @@ yyreduce:
 #line 311 "Bison_Rule.y"
                   { tnode *f = CreateTnode();
                     strcpy(f->token,"TYPE");
-                    f=ProgramNode((yyvsp[0].string),"TOKEN_STRINGTYPE",f);
+                    f=ProgramNode((yyvsp[0].string),"Токен string",f);
                     strcpy(f->token2,"string");
                     (yyval.node) = f;
                   }
@@ -1636,7 +1636,7 @@ yyreduce:
 					tnode *a = CreateTnode();
                     strcpy(a->token,"EXP");
                     a=ProgramNode((yyvsp[-2].node),a);
-                    a=ProgramNode((yyvsp[-1].string),"TOKEN_RELATIONOP",a);
+                    a=ProgramNode((yyvsp[-1].string),"Токен порівняння",a);
                     a=ProgramNode((yyvsp[0].node),a);
                     if(strcmp((yyvsp[-2].node)->token2,(yyvsp[0].node)->token2)!= 0)
                       yyerror(1);
@@ -1654,7 +1654,7 @@ yyreduce:
 					tnode *b = CreateTnode();
                     strcpy(b->token,"EXP");
                     b=ProgramNode((yyvsp[-2].node),b);
-                    b=ProgramNode((yyvsp[-1].string),"TOKEN_ARITHMATICOP_MINUS",b);
+                    b=ProgramNode((yyvsp[-1].string),"Токен -",b);
                     b=ProgramNode((yyvsp[0].node),b);
                     if(strcmp((yyvsp[-2].node)->token2,(yyvsp[0].node)->token2) != 0)
                       yyerror(4);
@@ -1677,7 +1677,7 @@ yyreduce:
 					tnode *c = CreateTnode();
                     strcpy(c->token,"EXP");
                     c=ProgramNode((yyvsp[-2].node),c);
-                    c=ProgramNode((yyvsp[-1].string),"TOKEN_ARITHMATICOP_DIV",c);
+                    c=ProgramNode((yyvsp[-1].string),"Токен /",c);
                     c=ProgramNode((yyvsp[0].node),c);
                     if(strcmp((yyvsp[-2].node)->token2,(yyvsp[0].node)->token2) != 0)
                       yyerror(4);
@@ -1701,7 +1701,7 @@ yyreduce:
 					tnode *b = CreateTnode();
                     strcpy(b->token,"EXP");
                     b=ProgramNode((yyvsp[-2].node),b);
-                    b=ProgramNode((yyvsp[-1].string),"TOKEN_ARITHMATICOP_PLUS",b);
+                    b=ProgramNode((yyvsp[-1].string),"Токен +",b);
                     b=ProgramNode((yyvsp[0].node),b);
                     if(strcmp((yyvsp[-2].node)->token2,(yyvsp[0].node)->token2) != 0)
                       yyerror(4);
@@ -1727,7 +1727,7 @@ yyreduce:
 					tnode *c = CreateTnode();
                     strcpy(c->token,"EXP");
                     c=ProgramNode((yyvsp[-2].node),c);
-                    c=ProgramNode((yyvsp[-1].string),"TOKEN_ARITHMATICOP_MULT",c);
+                    c=ProgramNode((yyvsp[-1].string),"Токен *",c);
                     c=ProgramNode((yyvsp[0].node),c);
                     if(strcmp((yyvsp[-2].node)->token2,(yyvsp[0].node)->token2) != 0)
                       yyerror(4);
@@ -1750,7 +1750,7 @@ yyreduce:
 					tnode *d = CreateTnode();
                     strcpy(d->token,"EXP");
                     d=ProgramNode((yyvsp[-2].node),d);
-                    d=ProgramNode((yyvsp[-1].string),"TOKEN_ARITHMATICOP_POW",d);
+                    d=ProgramNode((yyvsp[-1].string),"Токен ^",d);
                     d=ProgramNode((yyvsp[0].node),d);
                     if(strcmp((yyvsp[-2].node)->token2,(yyvsp[0].node)->token2) != 0)
 					  yyerror(4);
@@ -1766,7 +1766,7 @@ yyreduce:
 					tnode *e = CreateTnode();
                     strcpy(e->token,"EXP");
                     e=ProgramNode((yyvsp[-2].node),e);
-                    e=ProgramNode((yyvsp[-1].string),"TOKEN_LOGICOP",e);
+                    e=ProgramNode((yyvsp[-1].string),"Токен логічної операції",e);
                     e=ProgramNode((yyvsp[0].node),e);
                     if(strcmp((yyvsp[-2].node)->token2,(yyvsp[0].node)->token2) != 0)
 					  yyerror(4);
@@ -1782,7 +1782,7 @@ yyreduce:
 					tnode *f = CreateTnode();
                     strcpy(f->token,"EXP");
                     f=ProgramNode((yyvsp[-2].node),f);
-                    f=ProgramNode((yyvsp[-1].string),"TOKEN_BITWISEOP",f);
+                    f=ProgramNode((yyvsp[-1].string),"Токен бітової операції",f);
                     f=ProgramNode((yyvsp[0].node),f);
                     if(strcmp((yyvsp[-2].node)->token2,(yyvsp[0].node)->token2) != 0)
 					  yyerror(4);
@@ -1797,10 +1797,10 @@ yyreduce:
                   {
 					tnode *g = CreateTnode();
                     strcpy(g->token,"EXP");
-                    g=ProgramNode((yyvsp[-3].string),"TOKEN_ID",g);
-                    g=ProgramNode((yyvsp[-3].string),"TOKEN_LB",g);
+                    g=ProgramNode((yyvsp[-3].string),"Токен ID",g);
+                    g=ProgramNode((yyvsp[-3].string),"Токен [",g);
                     g=ProgramNode((yyvsp[-1].node),g);
-                    g=ProgramNode((yyvsp[0].string),"TOKEN_RB",g);
+                    g=ProgramNode((yyvsp[0].string),"Токен ]",g);
                     if(strcmp("int",(yyvsp[-1].node)->token2) != 0)
 					  yyerror("array index should be in int form");
                     if(table[(yyvsp[-3].string)]=="")
@@ -1817,7 +1817,7 @@ yyreduce:
                   {
 					tnode *h = CreateTnode();
                     strcpy(h->token,"EXP");
-                    h=ProgramNode((yyvsp[-1].string),"TOKEN_LOGICOP_NOT",h);
+                    h=ProgramNode((yyvsp[-1].string),"Токен !",h);
                     h=ProgramNode((yyvsp[0].node),h);
                     if(strcmp((yyvsp[0].node)->token2,"string") == 0)
 					  yyerror("string error");
@@ -1832,9 +1832,9 @@ yyreduce:
                   {
 					tnode *k = CreateTnode();
                     strcpy(k->token,"EXP");
-                    k=ProgramNode((yyvsp[-2].string),"TOKEN_LEFTPAREN",k);
+                    k=ProgramNode((yyvsp[-2].string),"Токен (",k);
                     k=ProgramNode((yyvsp[-1].node),k);
-                    k=ProgramNode((yyvsp[0].string),"TOKEN_RIGHTPAREN",k);
+                    k=ProgramNode((yyvsp[0].string),"Токен )",k);
                     strcpy(k->token2,(yyvsp[-1].node)->token2);
                     (yyval.node) = k;
                   }
@@ -1846,7 +1846,7 @@ yyreduce:
                   {
 					tnode *l = CreateTnode();
                     strcpy(l->token,"EXP");
-                    l=ProgramNode((yyvsp[0].string),"TOKEN_ID",l);
+                    l=ProgramNode((yyvsp[0].string),"Токен ID",l);
                     if(table[(yyvsp[0].string)]=="")
 					  yyerror(2,(yyvsp[0].string));
                     else
@@ -1934,16 +1934,16 @@ yyreduce:
                   {
 					tnode *a = CreateTnode();
                     strcpy(a->token,"LOOP");
-                    a=ProgramNode((yyvsp[-12].string),"TOKEN_LOOP",a);
-                    a=ProgramNode((yyvsp[-11].string),"TOKEN_ID",a);
-                    a=ProgramNode((yyvsp[-9].string),"TOKEN_LEFTPAREN",a);
+                    a=ProgramNode((yyvsp[-12].string),"Токен foreach",a);
+                    a=ProgramNode((yyvsp[-11].string),"Токен ID",a);
+                    a=ProgramNode((yyvsp[-9].string),"Токен (",a);
                     a=ProgramNode((yyvsp[-8].node),a);
-                    a=ProgramNode((yyvsp[-6].string),"TOKEN_UNTIL",a);
+                    a=ProgramNode((yyvsp[-6].string),"Токен ..",a);
                     a=ProgramNode((yyvsp[-5].node),a);
-                    a=ProgramNode((yyvsp[-3].string),"TOKEN_RIGHTPAREN",a);
-                    a=ProgramNode((yyvsp[-2].string),"TOKEN_LCB",a);
+                    a=ProgramNode((yyvsp[-3].string),"Токен )",a);
+                    a=ProgramNode((yyvsp[-2].string),"Токен {",a);
                     a=ProgramNode((yyvsp[-1].node),a);
-                    a=ProgramNode((yyvsp[0].string),"TOKEN_RCB",a);
+                    a=ProgramNode((yyvsp[0].string),"Токен }",a);
                     (yyval.node) = a;
 
 
@@ -1957,13 +1957,13 @@ yyreduce:
                   {
 					tnode *a = CreateTnode();
                     strcpy(a->token,"CONDITION");
-                    a=ProgramNode((yyvsp[-6].string),"TOKEN_IFCONDITION",a);
-                    a=ProgramNode((yyvsp[-5].string),"TOKEN_LEFTPAREN",a);
+                    a=ProgramNode((yyvsp[-6].string),"Токен if",a);
+                    a=ProgramNode((yyvsp[-5].string),"Токен (",a);
                     a=ProgramNode((yyvsp[-4].node),a);
-                    a=ProgramNode((yyvsp[-3].string),"TOKEN_RIGHTPAREN",a);
-                    a=ProgramNode((yyvsp[-2].string),"TOKEN_LCB",a);
+                    a=ProgramNode((yyvsp[-3].string),"Токен )",a);
+                    a=ProgramNode((yyvsp[-2].string),"Токен {",a);
                     a=ProgramNode((yyvsp[-1].node),a);
-                    a=ProgramNode((yyvsp[0].string),"TOKEN_RCB",a);
+                    a=ProgramNode((yyvsp[0].string),"Токен }",a);
                     (yyval.node) = a;
                     countForIF++;
                   }
@@ -1981,13 +1981,13 @@ yyreduce:
                   {
 				  tnode *b = CreateTnode();
                     strcpy(b->token,"CONDITION");
-                    b=ProgramNode((yyvsp[-8].string),"TOKEN_IFCONDITION",b);
-                    b=ProgramNode((yyvsp[-7].string),"TOKEN_LEFTPAREN",b);
+                    b=ProgramNode((yyvsp[-8].string),"Токен if",b);
+                    b=ProgramNode((yyvsp[-7].string),"Токен (",b);
                     b=ProgramNode((yyvsp[-6].node),b);
-                    b=ProgramNode((yyvsp[-5].string),"TOKEN_RIGHTPAREN",b);
-                    b=ProgramNode((yyvsp[-4].string),"TOKEN_LCB",b);
+                    b=ProgramNode((yyvsp[-5].string),"Токен )",b);
+                    b=ProgramNode((yyvsp[-4].string),"Токен {",b);
                     b=ProgramNode((yyvsp[-3].node),b);
-                    b=ProgramNode((yyvsp[-2].string),"TOKEN_RCB",b);
+                    b=ProgramNode((yyvsp[-2].string),"Токен }",b);
                     b=ProgramNode((yyvsp[0].node),b);
                     (yyval.node) = b;
                   }
@@ -1999,10 +1999,10 @@ yyreduce:
                   {
 					tnode *a = CreateTnode();
                     strcpy(a->token,"ELSECON");
-                    a=ProgramNode((yyvsp[-3].string),"TOKEN_ELSECONDITION",a);
-                    a=ProgramNode((yyvsp[-2].string),"TOKEN_LCB",a);
+                    a=ProgramNode((yyvsp[-3].string),"Токен else",a);
+                    a=ProgramNode((yyvsp[-2].string),"Токен {",a);
                     a=ProgramNode((yyvsp[-1].node),a);
-                    a=ProgramNode((yyvsp[0].string),"TOKEN_RCB",a);
+                    a=ProgramNode((yyvsp[0].string),"Токен }",a);
                     (yyval.node) = a;
                     countForEndIF++;
 
@@ -2015,7 +2015,7 @@ yyreduce:
                   {
 					tnode *a = CreateTnode();
                     strcpy(a->token,"STMT_RETURN");
-                    a=ProgramNode((yyvsp[-1].string),"TOKEN_RETURN",a);
+                    a=ProgramNode((yyvsp[-1].string),"Токен return",a);
                     a=ProgramNode((yyvsp[0].node),a);
                     (yyval.node) = a;
                   }
@@ -2034,7 +2034,7 @@ yyreduce:
 					tnode *a = CreateTnode();
                     strcpy(a->token,"STMT_DECLARE");
                     a=ProgramNode((yyvsp[-4].node),a);
-                    a=ProgramNode((yyvsp[-3].string),"TOKEN_ID",a);
+                    a=ProgramNode((yyvsp[-3].string),"Токен ID",a);
                     a=ProgramNode((yyvsp[-2].node),a);
                     a=ProgramNode((yyvsp[0].node),a);
 					if(table[(yyvsp[-3].string)]!="")
@@ -2067,9 +2067,9 @@ yyreduce:
                   {
 					tnode *a = CreateTnode();
                     strcpy(a->token,"ARRAY_VAR");
-                    a=ProgramNode((yyvsp[-2].string),"TOKEN_LB",a);
+                    a=ProgramNode((yyvsp[-2].string),"Токен [",a);
                     a=ProgramNode((yyvsp[-1].node),a);
-                    a=ProgramNode((yyvsp[0].string),"TOKEN_RB",a);
+                    a=ProgramNode((yyvsp[0].string),"Токен ]",a);
                     (yyval.node) = a;
 					if (variables[(yyvsp[-1].node)->token3]=="")
 					strcpy((yyval.node)->valname2, (yyvsp[-1].node)->valname2);
@@ -2085,8 +2085,8 @@ yyreduce:
                   {
 					tnode *b = CreateTnode();
                     strcpy(b->token,"ARRAY_VAR");
-                    b=ProgramNode((yyvsp[-1].string),"TOKEN_LB",b);
-                    b=ProgramNode((yyvsp[0].string),"TOKEN_RB",b);
+                    b=ProgramNode((yyvsp[-1].string),"Токен [",b);
+                    b=ProgramNode((yyvsp[0].string),"Токен ]",b);
                     (yyval.node) = b;
                   }
 #line 2093 "myapp.cpp"
@@ -2122,8 +2122,8 @@ yyreduce:
                   {
 					tnode *b = CreateTnode();
                     strcpy(b->token,"IDS");
-                    b=ProgramNode((yyvsp[-3].string),"TOKEN_COMMA",b);
-                    b=ProgramNode((yyvsp[-2].string),"TOKEN_ID",b);
+                    b=ProgramNode((yyvsp[-3].string),"Токен ,",b);
+                    b=ProgramNode((yyvsp[-2].string),"Токен ID",b);
                     b=ProgramNode((yyvsp[-1].node),b);
                     b=ProgramNode((yyvsp[0].node),b);
                     if(table[(yyvsp[-2].string)]!= "")
@@ -2150,10 +2150,10 @@ yyreduce:
                   {
 					tnode *a = CreateTnode();
                     strcpy(a->token,"CALL");
-                    a=ProgramNode((yyvsp[-3].string),"TOKEN_ID",a);
-                    a=ProgramNode((yyvsp[-2].string),"TOKEN_LEFTPAREN",a);
+                    a=ProgramNode((yyvsp[-3].string),"Токен ID",a);
+                    a=ProgramNode((yyvsp[-2].string),"Токен (",a);
                     a=ProgramNode((yyvsp[-1].node),a);
-                    a=ProgramNode((yyvsp[0].string),"TOKEN_RIGHTPAREN",a);
+                    a=ProgramNode((yyvsp[0].string),"Токен )",a);
                     (yyval.node) = a;
                   }
 #line 2160 "myapp.cpp"
@@ -2176,7 +2176,7 @@ yyreduce:
                   {
 					tnode *b = CreateTnode();
                     strcpy(b->token,"ARGS");
-                    b=ProgramNode((yyvsp[-2].string),"TOKEN_COMMA",b);
+                    b=ProgramNode((yyvsp[-2].string),"Токен ,",b);
                     b=ProgramNode((yyvsp[-1].node),b);
                     b=ProgramNode((yyvsp[0].node),b);
                     (yyval.node) = b;
@@ -2199,9 +2199,9 @@ yyreduce:
                   {
 					tnode *a = CreateTnode();
                     strcpy(a->token,"STMT_ASSIGN");
-                    a=ProgramNode((yyvsp[-3].string),"TOKEN_ID",a);
+                    a=ProgramNode((yyvsp[-3].string),"Токен ID",a);
                     a=ProgramNode((yyvsp[-2].node),a);
-                    a=ProgramNode((yyvsp[-1].string),"TOKEN_ASSIGNOP",a);
+                    a=ProgramNode((yyvsp[-1].string),"Токен =",a);
                     a=ProgramNode((yyvsp[0].node),a);
                     if(table[(yyvsp[-3].string)] == "")
                       yyerror(2,(yyvsp[-3].string));
@@ -2243,7 +2243,7 @@ yyreduce:
                   {
 					tnode *b = CreateTnode();
                     strcpy(b->token,"STMT_ASSIGN");
-                    b=ProgramNode((yyvsp[-1].string),"TOKEN_ASSIGNOP",b);
+                    b=ProgramNode((yyvsp[-1].string),"Токен =",b);
                     b=ProgramNode((yyvsp[0].node),b);
                     if(strcmp(typecheck,(yyvsp[0].node)->token2) != 0)
                       yyerror(1);
@@ -2258,7 +2258,7 @@ yyreduce:
                   {
               tnode *c = CreateTnode();
               strcpy(c->token, "STMT_ASSIGN");
-              ProgramNode((yyvsp[-1].string), "TOKEN_ASSIGNOP", c);
+              ProgramNode((yyvsp[-1].string), "Токен =", c);
               ProgramNode((yyvsp[0].node), c);
               (yyval.node) = c;
                   }
@@ -2270,9 +2270,9 @@ yyreduce:
                                                 {
                 tnode *d = CreateTnode();
     					  strcpy(d->token, "STMT_ASSIGN");
-    					  ProgramNode((yyvsp[-3].string), "TOKEN_ID",d);
+    					  ProgramNode((yyvsp[-3].string), "Токен ID",d);
     					  ProgramNode((yyvsp[-2].node),d);
-    					  ProgramNode((yyvsp[-1].string), "TOKEN_ASSIGNOP",d);
+    					  ProgramNode((yyvsp[-1].string), "Токен =",d);
     					  ProgramNode((yyvsp[0].node),d);
     					  (yyval.node) = d;
           					}

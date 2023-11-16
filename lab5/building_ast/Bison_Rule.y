@@ -111,10 +111,10 @@ GLOBAL_DECLARE:  TYPE TOKEN_ID TOKEN_ASSIGNOP EXP TOKEN_SEMICOLON GLOBAL_DECLARE
 					tnode *a = CreateTnode();
                     strcpy(a->token,"GLOBAL_DECLARE");
                     a=ProgramNode($1,a);
-                    a=ProgramNode($2,"TOKEN_ID",a);
-                    a=ProgramNode($3,"TOKEN_ASSIGNOP",a);
+                    a=ProgramNode($2,"Токен ID",a);
+                    a=ProgramNode($3,"Токен =",a);
                     a=ProgramNode($4,a);
-                    a=ProgramNode($5,"TOKEN_SEMICOLON",a);
+                    a=ProgramNode($5,"Токен ;",a);
                     a=ProgramNode($6,a);
 
                     if(table[$2]!="")
@@ -127,7 +127,7 @@ GLOBAL_DECLARE:  TYPE TOKEN_ID TOKEN_ASSIGNOP EXP TOKEN_SEMICOLON GLOBAL_DECLARE
                   |PGM
                   {
 					tnode *b = CreateTnode();
-                    strcpy(b->token,"GLOBAL_DECLARE");
+                    strcpy(b->token,"Глобальне оголошення");
                     b=ProgramNode($1,b);
                     $$ = b;
                   };
@@ -137,13 +137,13 @@ PGM:            TYPE TOKEN_ID {} TOKEN_LEFTPAREN F_ARG TOKEN_RIGHTPAREN TOKEN_LC
 					tnode *a = CreateTnode();
 					strcpy(a->token,"PGM");
 					a=ProgramNode($1,a);
-					a=ProgramNode($2,"TOKEN_ID",a);
-					a=ProgramNode($4,"TOKEN_LEFTPAREN",a);
+					a=ProgramNode($2,"Токен ID",a);
+					a=ProgramNode($4,"Токен (",a);
 					a=ProgramNode($5,a);
-					a=ProgramNode($6,"TOKEN_RIGHTPAREN",a);
-					a=ProgramNode($7,"TOKEN_LCB",a);
+					a=ProgramNode($6,"Токен )",a);
+					a=ProgramNode($7,"Токен {",a);
 					a=ProgramNode($8,a);
-					a=ProgramNode($9,"TOKEN_RCB",a);
+					a=ProgramNode($9,"Токен }",a);
 					$$ = a;
 
 
@@ -160,9 +160,9 @@ F_ARG:          TYPE TOKEN_ID ARRAY_VAR TOKEN_COMMA F_ARG
 				  tnode *a = CreateTnode();
                     strcpy(a->token,"F_ARG");
                     a=ProgramNode($1,a);
-                    a=ProgramNode($2,"TOKEN_ID",a);
+                    a=ProgramNode($2,"Токен ID",a);
                     a=ProgramNode($3,a);
-                    a=ProgramNode($4,"TOKEN_COMMA",a);
+                    a=ProgramNode($4,"Токен ,",a);
                     a=ProgramNode($5,a);
                     table[$2]=$1->token2;
                     $$ = a;
@@ -171,7 +171,7 @@ F_ARG:          TYPE TOKEN_ID ARRAY_VAR TOKEN_COMMA F_ARG
                   { tnode *b = CreateTnode();
                     strcpy(b->token,"F_ARG");
                     b=ProgramNode($1,b);
-                    b=ProgramNode($2,"TOKEN_ID",b);
+                    b=ProgramNode($2,"Токен ID",b);
                     b=ProgramNode($3,b);
                     table[$2]=$1->token2;
                     $$ = b;
@@ -187,7 +187,7 @@ STMTS :		      STMT TOKEN_SEMICOLON STMTS
 					tnode *a = CreateTnode();
                     strcpy(a->token,"STMTS");
                     a=ProgramNode($1,a);
-                    a=ProgramNode($2,"TOKEN_SEMICOLON",a);
+                    a=ProgramNode($2,"Токен ;",a);
                     a=ProgramNode($3,a);
                     $$ = a;
                   }
@@ -263,10 +263,10 @@ PRINTFUNC :		TOKEN_PRFUNC TOKEN_LEFTPAREN EXP TOKEN_RIGHTPAREN
                   {
 					tnode *a = CreateTnode();
                     strcpy(a->token,"PRINTFUNC");
-                    a=ProgramNode($1,"TOKEN_PRFUNC",a);
-                    a=ProgramNode($2,"TOKEN_LEFTPAREN",a);
+                    a=ProgramNode($1,"Токен print",a);
+                    a=ProgramNode($2,"Токен (",a);
                     a=ProgramNode($3,a);
-                    a=ProgramNode($4,"TOKEN_RIGHTPAREN",a);
+                    a=ProgramNode($4,"Токен )",a);
                     $$ = a;
 
 
@@ -275,42 +275,42 @@ TYPE:           TOKEN_VOIDTYPE
                   {
 					tnode *a = CreateTnode();
                     strcpy(a->token,"TYPE");
-                    a=ProgramNode($1,"TOKEN_VOIDTYPE",a);
+                    a=ProgramNode($1,"Токен void",a);
                     strcpy(a->token2,"void");
                     $$ = a;
                   }
                 | TOKEN_INTTYPE
                   { tnode *b = CreateTnode();
                     strcpy(b->token,"TYPE");
-                    b=ProgramNode($1,"TOKEN_INTTYPE",b);
+                    b=ProgramNode($1,"Токен int",b);
                     strcpy(b->token2,"int");
                     $$ = b;
                   }
                 | TOKEN_DOUBLETYPE
                   { tnode *c = CreateTnode();
                     strcpy(c->token,"TYPE");
-                    c=ProgramNode($1,"TOKEN_DOUBLETYPE",c);
+                    c=ProgramNode($1,"Токен double",c);
                     strcpy(c->token2,"double");
                     $$ = c;
                   }
                 | TOKEN_FLOATTYPE
                   { tnode *d = CreateTnode();
                     strcpy(d->token,"TYPE");
-                    d=ProgramNode($1,"TOKEN_FLOATTYPE",d);
+                    d=ProgramNode($1,"Токен float",d);
                     strcpy(d->token2,"float");
                     $$ = d;
                   }
                 | TOKEN_CHARTYPE
                   { tnode *e = CreateTnode();
                     strcpy(e->token,"TYPE");
-                    e=ProgramNode($1,"TOKEN_CHARTYPE",e);
+                    e=ProgramNode($1,"Токен float",e);
                     strcpy(e->token2,"char");
                     $$ = e;
                   }
                 | TOKEN_STRINGTYPE
                   { tnode *f = CreateTnode();
                     strcpy(f->token,"TYPE");
-                    f=ProgramNode($1,"TOKEN_STRINGTYPE",f);
+                    f=ProgramNode($1,"Токен string",f);
                     strcpy(f->token2,"string");
                     $$ = f;
                   };
@@ -320,7 +320,7 @@ EXP:		         EXP TOKEN_RELATIONOP EXP
 					tnode *a = CreateTnode();
                     strcpy(a->token,"EXP");
                     a=ProgramNode($1,a);
-                    a=ProgramNode($2,"TOKEN_RELATIONOP",a);
+                    a=ProgramNode($2,"Токен порівняння",a);
                     a=ProgramNode($3,a);
                     if(strcmp($1->token2,$3->token2)!= 0)
                       yyerror(1);
@@ -335,7 +335,7 @@ EXP:		         EXP TOKEN_RELATIONOP EXP
 					tnode *b = CreateTnode();
                     strcpy(b->token,"EXP");
                     b=ProgramNode($1,b);
-                    b=ProgramNode($2,"TOKEN_ARITHMATICOP_MINUS",b);
+                    b=ProgramNode($2,"Токен -",b);
                     b=ProgramNode($3,b);
                     if(strcmp($1->token2,$3->token2) != 0)
                       yyerror(4);
@@ -354,7 +354,7 @@ EXP:		         EXP TOKEN_RELATIONOP EXP
 					tnode *c = CreateTnode();
                     strcpy(c->token,"EXP");
                     c=ProgramNode($1,c);
-                    c=ProgramNode($2,"TOKEN_ARITHMATICOP_DIV",c);
+                    c=ProgramNode($2,"Токен /",c);
                     c=ProgramNode($3,c);
                     if(strcmp($1->token2,$3->token2) != 0)
                       yyerror(4);
@@ -376,7 +376,7 @@ EXP:		         EXP TOKEN_RELATIONOP EXP
 					tnode *b = CreateTnode();
                     strcpy(b->token,"EXP");
                     b=ProgramNode($1,b);
-                    b=ProgramNode($2,"TOKEN_ARITHMATICOP_PLUS",b);
+                    b=ProgramNode($2,"Токен +",b);
                     b=ProgramNode($3,b);
                     if(strcmp($1->token2,$3->token2) != 0)
                       yyerror(4);
@@ -398,7 +398,7 @@ EXP:		         EXP TOKEN_RELATIONOP EXP
 					tnode *c = CreateTnode();
                     strcpy(c->token,"EXP");
                     c=ProgramNode($1,c);
-                    c=ProgramNode($2,"TOKEN_ARITHMATICOP_MULT",c);
+                    c=ProgramNode($2,"Токен *",c);
                     c=ProgramNode($3,c);
                     if(strcmp($1->token2,$3->token2) != 0)
                       yyerror(4);
@@ -418,7 +418,7 @@ EXP:		         EXP TOKEN_RELATIONOP EXP
 					tnode *d = CreateTnode();
                     strcpy(d->token,"EXP");
                     d=ProgramNode($1,d);
-                    d=ProgramNode($2,"TOKEN_ARITHMATICOP_POW",d);
+                    d=ProgramNode($2,"Токен ^",d);
                     d=ProgramNode($3,d);
                     if(strcmp($1->token2,$3->token2) != 0)
 					  yyerror(4);
@@ -430,7 +430,7 @@ EXP:		         EXP TOKEN_RELATIONOP EXP
 					tnode *e = CreateTnode();
                     strcpy(e->token,"EXP");
                     e=ProgramNode($1,e);
-                    e=ProgramNode($2,"TOKEN_LOGICOP",e);
+                    e=ProgramNode($2,"Токен логічної операції",e);
                     e=ProgramNode($3,e);
                     if(strcmp($1->token2,$3->token2) != 0)
 					  yyerror(4);
@@ -442,7 +442,7 @@ EXP:		         EXP TOKEN_RELATIONOP EXP
 					tnode *f = CreateTnode();
                     strcpy(f->token,"EXP");
                     f=ProgramNode($1,f);
-                    f=ProgramNode($2,"TOKEN_BITWISEOP",f);
+                    f=ProgramNode($2,"Токен бітової операції",f);
                     f=ProgramNode($3,f);
                     if(strcmp($1->token2,$3->token2) != 0)
 					  yyerror(4);
@@ -453,10 +453,10 @@ EXP:		         EXP TOKEN_RELATIONOP EXP
                   {
 					tnode *g = CreateTnode();
                     strcpy(g->token,"EXP");
-                    g=ProgramNode($1,"TOKEN_ID",g);
-                    g=ProgramNode($1,"TOKEN_LB",g);
+                    g=ProgramNode($1,"Токен ID",g);
+                    g=ProgramNode($1,"Токен [",g);
                     g=ProgramNode($3,g);
-                    g=ProgramNode($4,"TOKEN_RB",g);
+                    g=ProgramNode($4,"Токен ]",g);
                     if(strcmp("int",$3->token2) != 0)
 					  yyerror("array index should be in int form");
                     if(table[$1]=="")
@@ -469,7 +469,7 @@ EXP:		         EXP TOKEN_RELATIONOP EXP
                   {
 					tnode *h = CreateTnode();
                     strcpy(h->token,"EXP");
-                    h=ProgramNode($1,"TOKEN_LOGICOP_NOT",h);
+                    h=ProgramNode($1,"Токен !",h);
                     h=ProgramNode($2,h);
                     if(strcmp($2->token2,"string") == 0)
 					  yyerror("string error");
@@ -480,9 +480,9 @@ EXP:		         EXP TOKEN_RELATIONOP EXP
                   {
 					tnode *k = CreateTnode();
                     strcpy(k->token,"EXP");
-                    k=ProgramNode($1,"TOKEN_LEFTPAREN",k);
+                    k=ProgramNode($1,"Токен (",k);
                     k=ProgramNode($2,k);
-                    k=ProgramNode($3,"TOKEN_RIGHTPAREN",k);
+                    k=ProgramNode($3,"Токен )",k);
                     strcpy(k->token2,$2->token2);
                     $$ = k;
                   }
@@ -490,7 +490,7 @@ EXP:		         EXP TOKEN_RELATIONOP EXP
                   {
 					tnode *l = CreateTnode();
                     strcpy(l->token,"EXP");
-                    l=ProgramNode($1,"TOKEN_ID",l);
+                    l=ProgramNode($1,"Токен ID",l);
                     if(table[$1]=="")
 					  yyerror(2,$1);
                     else
@@ -540,16 +540,16 @@ LOOP:		        TOKEN_LOOP TOKEN_ID {} TOKEN_LEFTPAREN EXP {} TOKEN_UNTIL EXP {} 
                   {
 					tnode *a = CreateTnode();
                     strcpy(a->token,"LOOP");
-                    a=ProgramNode($1,"TOKEN_LOOP",a);
-                    a=ProgramNode($2,"TOKEN_ID",a);
-                    a=ProgramNode($4,"TOKEN_LEFTPAREN",a);
+                    a=ProgramNode($1,"Токен foreach",a);
+                    a=ProgramNode($2,"Токен ID",a);
+                    a=ProgramNode($4,"Токен (",a);
                     a=ProgramNode($5,a);
-                    a=ProgramNode($7,"TOKEN_UNTIL",a);
+                    a=ProgramNode($7,"Токен ..",a);
                     a=ProgramNode($8,a);
-                    a=ProgramNode($10,"TOKEN_RIGHTPAREN",a);
-                    a=ProgramNode($11,"TOKEN_LCB",a);
+                    a=ProgramNode($10,"Токен )",a);
+                    a=ProgramNode($11,"Токен {",a);
                     a=ProgramNode($12,a);
-                    a=ProgramNode($13,"TOKEN_RCB",a);
+                    a=ProgramNode($13,"Токен }",a);
                     $$ = a;
 
 
@@ -560,13 +560,13 @@ CONDITION :	      	TOKEN_IFCONDITION TOKEN_LEFTPAREN EXP TOKEN_RIGHTPAREN TOKEN_
                   {
 					tnode *a = CreateTnode();
                     strcpy(a->token,"CONDITION");
-                    a=ProgramNode($1,"TOKEN_IFCONDITION",a);
-                    a=ProgramNode($2,"TOKEN_LEFTPAREN",a);
+                    a=ProgramNode($1,"Токен if",a);
+                    a=ProgramNode($2,"Токен (",a);
                     a=ProgramNode($3,a);
-                    a=ProgramNode($4,"TOKEN_RIGHTPAREN",a);
-                    a=ProgramNode($5,"TOKEN_LCB",a);
+                    a=ProgramNode($4,"Токен )",a);
+                    a=ProgramNode($5,"Токен {",a);
                     a=ProgramNode($6,a);
-                    a=ProgramNode($7,"TOKEN_RCB",a);
+                    a=ProgramNode($7,"Токен }",a);
                     $$ = a;
                     countForIF++;
                   }
@@ -574,13 +574,13 @@ CONDITION :	      	TOKEN_IFCONDITION TOKEN_LEFTPAREN EXP TOKEN_RIGHTPAREN TOKEN_
                   {
 				  tnode *b = CreateTnode();
                     strcpy(b->token,"CONDITION");
-                    b=ProgramNode($1,"TOKEN_IFCONDITION",b);
-                    b=ProgramNode($2,"TOKEN_LEFTPAREN",b);
+                    b=ProgramNode($1,"Токен if",b);
+                    b=ProgramNode($2,"Токен (",b);
                     b=ProgramNode($3,b);
-                    b=ProgramNode($4,"TOKEN_RIGHTPAREN",b);
-                    b=ProgramNode($5,"TOKEN_LCB",b);
+                    b=ProgramNode($4,"Токен )",b);
+                    b=ProgramNode($5,"Токен {",b);
                     b=ProgramNode($6,b);
-                    b=ProgramNode($7,"TOKEN_RCB",b);
+                    b=ProgramNode($7,"Токен }",b);
                     b=ProgramNode($9,b);
                     $$ = b;
                   };
@@ -589,10 +589,10 @@ ELSECON:		    TOKEN_ELSECONDITION TOKEN_LCB STMTS TOKEN_RCB
                   {
 					tnode *a = CreateTnode();
                     strcpy(a->token,"ELSECON");
-                    a=ProgramNode($1,"TOKEN_ELSECONDITION",a);
-                    a=ProgramNode($2,"TOKEN_LCB",a);
+                    a=ProgramNode($1,"Токен else",a);
+                    a=ProgramNode($2,"Токен {",a);
                     a=ProgramNode($3,a);
-                    a=ProgramNode($4,"TOKEN_RCB",a);
+                    a=ProgramNode($4,"Токен }",a);
                     $$ = a;
                     countForEndIF++;
 
@@ -602,7 +602,7 @@ STMT_RETURN :	    TOKEN_RETURN EXP
                   {
 					tnode *a = CreateTnode();
                     strcpy(a->token,"STMT_RETURN");
-                    a=ProgramNode($1,"TOKEN_RETURN",a);
+                    a=ProgramNode($1,"Токен return",a);
                     a=ProgramNode($2,a);
                     $$ = a;
                   };
@@ -612,7 +612,7 @@ STMT_DECLARE :	  TYPE TOKEN_ID ARRAY_VAR {strcpy(typecheck,$1->token2);}IDS
 					tnode *a = CreateTnode();
                     strcpy(a->token,"STMT_DECLARE");
                     a=ProgramNode($1,a);
-                    a=ProgramNode($2,"TOKEN_ID",a);
+                    a=ProgramNode($2,"Токен ID",a);
                     a=ProgramNode($3,a);
                     a=ProgramNode($5,a);
 					if(table[$2]!="")
@@ -642,9 +642,9 @@ ARRAY_VAR:		    TOKEN_LB EXP TOKEN_RB
                   {
 					tnode *a = CreateTnode();
                     strcpy(a->token,"ARRAY_VAR");
-                    a=ProgramNode($1,"TOKEN_LB",a);
+                    a=ProgramNode($1,"Токен [",a);
                     a=ProgramNode($2,a);
-                    a=ProgramNode($3,"TOKEN_RB",a);
+                    a=ProgramNode($3,"Токен ]",a);
                     $$ = a;
 					if (variables[$2->token3]=="")
 					strcpy($$->valname2, $2->valname2);
@@ -656,8 +656,8 @@ ARRAY_VAR:		    TOKEN_LB EXP TOKEN_RB
                   {
 					tnode *b = CreateTnode();
                     strcpy(b->token,"ARRAY_VAR");
-                    b=ProgramNode($1,"TOKEN_LB",b);
-                    b=ProgramNode($2,"TOKEN_RB",b);
+                    b=ProgramNode($1,"Токен [",b);
+                    b=ProgramNode($2,"Токен ]",b);
                     $$ = b;
                   }
                   |{  tnode *c = CreateTnode();
@@ -681,8 +681,8 @@ IDS :		          STMT_ASSIGN IDS
                   {
 					tnode *b = CreateTnode();
                     strcpy(b->token,"IDS");
-                    b=ProgramNode($1,"TOKEN_COMMA",b);
-                    b=ProgramNode($2,"TOKEN_ID",b);
+                    b=ProgramNode($1,"Токен ,",b);
+                    b=ProgramNode($2,"Токен ID",b);
                     b=ProgramNode($3,b);
                     b=ProgramNode($4,b);
                     if(table[$2]!= "")
@@ -701,10 +701,10 @@ CALL :		        TOKEN_ID TOKEN_LEFTPAREN ARGS TOKEN_RIGHTPAREN
                   {
 					tnode *a = CreateTnode();
                     strcpy(a->token,"CALL");
-                    a=ProgramNode($1,"TOKEN_ID",a);
-                    a=ProgramNode($2,"TOKEN_LEFTPAREN",a);
+                    a=ProgramNode($1,"Токен ID",a);
+                    a=ProgramNode($2,"Токен (",a);
                     a=ProgramNode($3,a);
-                    a=ProgramNode($4,"TOKEN_RIGHTPAREN",a);
+                    a=ProgramNode($4,"Токен )",a);
                     $$ = a;
                   };
 
@@ -720,7 +720,7 @@ ARGS :		        EXP ARGS
                   {
 					tnode *b = CreateTnode();
                     strcpy(b->token,"ARGS");
-                    b=ProgramNode($1,"TOKEN_COMMA",b);
+                    b=ProgramNode($1,"Токен ,",b);
                     b=ProgramNode($2,b);
                     b=ProgramNode($3,b);
                     $$ = b;
@@ -735,9 +735,9 @@ STMT_ASSIGN :     TOKEN_ID ARRAY_VAR TOKEN_ASSIGNOP EXP
                   {
 					tnode *a = CreateTnode();
                     strcpy(a->token,"STMT_ASSIGN");
-                    a=ProgramNode($1,"TOKEN_ID",a);
+                    a=ProgramNode($1,"Токен ID",a);
                     a=ProgramNode($2,a);
-                    a=ProgramNode($3,"TOKEN_ASSIGNOP",a);
+                    a=ProgramNode($3,"Токен =",a);
                     a=ProgramNode($4,a);
                     if(table[$1] == "")
                       yyerror(2,$1);
@@ -775,7 +775,7 @@ STMT_ASSIGN :     TOKEN_ID ARRAY_VAR TOKEN_ASSIGNOP EXP
                   {
 					tnode *b = CreateTnode();
                     strcpy(b->token,"STMT_ASSIGN");
-                    b=ProgramNode($1,"TOKEN_ASSIGNOP",b);
+                    b=ProgramNode($1,"Токен =",b);
                     b=ProgramNode($2,b);
                     if(strcmp(typecheck,$2->token2) != 0)
                       yyerror(1);
@@ -787,7 +787,7 @@ STMT_ASSIGN :     TOKEN_ID ARRAY_VAR TOKEN_ASSIGNOP EXP
                   {
               tnode *c = CreateTnode();
               strcpy(c->token, "STMT_ASSIGN");
-              ProgramNode($1, "TOKEN_ASSIGNOP", c);
+              ProgramNode($1, "Токен =", c);
               ProgramNode($2, c);
               $$ = c;
                   }
@@ -795,9 +795,9 @@ STMT_ASSIGN :     TOKEN_ID ARRAY_VAR TOKEN_ASSIGNOP EXP
           					{
                 tnode *d = CreateTnode();
     					  strcpy(d->token, "STMT_ASSIGN");
-    					  ProgramNode($1, "TOKEN_ID",d);
+    					  ProgramNode($1, "Токен ID",d);
     					  ProgramNode($2,d);
-    					  ProgramNode($3, "TOKEN_ASSIGNOP",d);
+    					  ProgramNode($3, "Токен =",d);
     					  ProgramNode($4,d);
     					  $$ = d;
           					};
