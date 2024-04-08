@@ -79,5 +79,40 @@ namespace FiniteAutomatonSimulation.Tests
             automaton.Accepts(startState, word, results);
             return results.Contains(true);
         }
+
+        [Test]
+        public void Accepts_MultipleInputs_CorrectResults()
+        {
+            var results = new List<bool>();
+            var tempResults = new List<bool>(); // Тимчасовий список для кожного результату
+
+            automaton.Accepts('1', "a", tempResults);
+            results.Add(tempResults.LastOrDefault());
+            tempResults.Clear();
+
+            automaton.Accepts('1', "abc", tempResults);
+            results.Add(tempResults.LastOrDefault());
+            tempResults.Clear();
+
+            automaton.Accepts('1', "aba", tempResults);
+            results.Add(tempResults.LastOrDefault());
+            tempResults.Clear();
+
+            automaton.Accepts('1', "b", tempResults);
+            results.Add(tempResults.LastOrDefault());
+            tempResults.Clear();
+
+            var expectedResults = new List<bool> { true, false, true, false };
+
+            try
+            {
+                CollectionAssert.AreEqual(expectedResults, results);
+            }
+            catch (AssertionException ex)
+            {
+                throw new AssertionException(
+                    $"{ex.Message} Actual results: [{string.Join(", ", results.Select(r => r.ToString()))}]", ex);
+            }
+        }
     }
 }
