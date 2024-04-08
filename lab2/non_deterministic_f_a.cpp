@@ -173,7 +173,7 @@ int main()
 
     automaton.accepts_(start_state, "ab", results);
     checkResult(results);
-    automaton.accepts_(start_state, "ecc", results);
+    automaton.accepts_(start_state, "cc", results);
     checkResult(results);
 
     return 0;
